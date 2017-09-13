@@ -14,33 +14,38 @@
             <a class="navbar-brand" href="{{ URL::to('seasons') }}">Nerd Alert</a>
         </div> -->
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('seasons') }}">Temporadas</a></li>
-            <li><a href="{{ URL::to('seasons/create') }}">Crear Temporada</a>
+            <li><a href="{{ URL::to('players') }}">Jugadores</a></li>
+            <li><a href="{{ URL::to('players/create') }}">Crear Jugador</a>
         </ul>
     </nav>
 
-    <h1>Crear Temporada</h1>
+    <h1>Crear Jugador</h1>
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all() )}}
 
-    {{ Form::open(array('url' => 'seasons')) }}
-
+    {{ Form::open(array('url' => 'players')) }}
+    
         <div class="form-group">
-            {{ Form::label('name', 'Temporada') }}
+            {{ Form::label('name', 'Nombre') }}
             {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
         </div>
 
         <div class="form-group">
-            {{ Form::label('date_init', 'Fecha de Inicio') }}
-            {{ Form::date('date_init', Input::old('date_init'), array('class' => 'form-control')) }}
+            {{ Form::label('height', 'Talla (m)') }}
+            {{ Form::date('height', Input::old('height'), array('class' => 'form-control')) }}
         </div>
 
         <div class="form-group">
-            {{ Form::label('date_end', 'Fecha de Termino') }}
-            {{ Form::date('date_end', Input::old('date_end'), array('class' => 'form-control')) }}
+            {{ Form::label('weight', 'Peso (Kg)') }}
+            {{ Form::date('weight', Input::old('weight'), array('class' => 'form-control')) }}
         </div>
 
-    {{ Form::submit('Temporada Creada', array('class' => 'btn btn-primary')) }}
+        <div class="form-group">
+            {{ Form::label('birth_date', 'Fecha de Nacimiento') }}
+            {{ Form::date('birth_date', Input::old('birth_date'), array('class' => 'form-control')) }}
+        </div>
+
+    {{ Form::submit('Jugador Creado', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 
