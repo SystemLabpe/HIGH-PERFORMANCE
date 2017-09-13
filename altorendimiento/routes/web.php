@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/seasons', 'SeasonController@index')->name('seasons');;
+Route::get('/seasons', 'SeasonController@index')->name('seasons');
+
+Route::get('/seasons/create', 'SeasonController@create')->name('seasons');

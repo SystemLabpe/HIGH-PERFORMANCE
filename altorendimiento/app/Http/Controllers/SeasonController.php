@@ -27,7 +27,7 @@ class SeasonController extends Controller
      */
     public function create()
     {
-        //
+        return view('season_add');
     }
 
     /**
@@ -38,7 +38,14 @@ class SeasonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $seasons = new Season();
+        $seasons->name = $request->name;
+        $seasons->date_init = $request->date_init;
+        $seasons->date_end = $request->date_end;
+        $seasons->club_id = 1;
+
+        $seasons->save();
+        return redirect('/season_list');
     }
 
     /**
@@ -49,7 +56,7 @@ class SeasonController extends Controller
      */
     public function show(Season $season)
     {
-        //
+
     }
 
     /**
