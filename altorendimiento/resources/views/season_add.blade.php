@@ -19,11 +19,12 @@
         </ul>
     </nav>
 
-    <h1>Temporada {{ $season->name }}</h1>
+    <h1>Crear Temporada</h1>
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all() )}}
 
-    {{ Form::open(array('url' => 'nerds')) }}
+    {{ Form::open(array('url' => 'seasons')) }}
+    
         <div class="form-group">
             {{ Form::label('name', 'Temporada') }}
             {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
@@ -39,7 +40,7 @@
             {{ Form::date('date_end', Input::old('date_end'), array('class' => 'form-control')) }}
         </div>
 
-    {{ Form::submit('Create the Nerd!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Temporada Creada', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 
