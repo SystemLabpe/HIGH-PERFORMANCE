@@ -15,7 +15,6 @@ class SeasonController extends Controller
      */
     public function index()
     {
-        Log::info('HOLA');
         $seasons = Season::get();
         return view('season_list', compact('seasons'));
     }
@@ -45,7 +44,7 @@ class SeasonController extends Controller
         $seasons->club_id = 1;
 
         $seasons->save();
-        return redirect('/season_list');
+        return view('/season_list');
     }
 
     /**
@@ -54,9 +53,10 @@ class SeasonController extends Controller
      * @param  \App\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function show(Season $season)
+    public function show($id)
     {
-
+        $season = Season::find($id);
+        return view('/season_detail',compact('season'));
     }
 
     /**
@@ -65,9 +65,10 @@ class SeasonController extends Controller
      * @param  \App\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function edit(Season $season)
+    public function edit(Request $request,$id)
     {
-        //
+        $season = Season::find($id);
+        return view('/season_edit',compact('season'));
     }
 
     /**
@@ -77,9 +78,14 @@ class SeasonController extends Controller
      * @param  \App\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Season $season)
+    public function update(Request $request, $id)
     {
-        //
+        $season = Season::find($id);
+        $season->name = $request->name;
+        $season->date_init = $request->date_init;
+        $season->date_end = $request->date_end;
+        $season->club_id = 1;
+        return view('/season_detail',compact('season'));
     }
 
     /**
