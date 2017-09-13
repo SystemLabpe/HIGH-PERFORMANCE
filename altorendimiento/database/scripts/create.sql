@@ -56,15 +56,15 @@ CREATE TABLE `highperformancedb`.`users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`),
-  INDEX `clubs_users_idx` (`club_id` ASC),
-  INDEX `roles_users_idx` (`role_id` ASC),
-  CONSTRAINT `fk_clubs_users`
+  UNIQUE KEY `uno` (`email`),
+  INDEX `dos` (`club_id` ASC),
+  INDEX `tres` (`role_id` ASC),
+  CONSTRAINT `cuatro`
     FOREIGN KEY (`club_id`)
     REFERENCES `highperformancedb`.`clubs` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_roles_users`
+  CONSTRAINT `cinco`
     FOREIGN KEY (`role_id`)
     REFERENCES `highperformancedb`.`roles` (`id`)
     ON DELETE NO ACTION
@@ -82,8 +82,8 @@ CREATE TABLE `highperformancedb`.`password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`),
-  KEY `password_resets_token_index` (`token`)
+  KEY `seis` (`email`),
+  KEY `siete` (`token`)
 ) 
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `highperformancedb`.`seasons` (
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `clubs_seasons_idx` (`club_id` ASC),
-  CONSTRAINT `fk_clubs_seasons`
+  INDEX `ocho` (`club_id` ASC),
+  CONSTRAINT `nueve`
     FOREIGN KEY (`club_id`)
     REFERENCES `highperformancedb`.`clubs` (`id`)
     ON DELETE NO ACTION
@@ -127,8 +127,8 @@ CREATE TABLE IF NOT EXISTS `highperformancedb`.`players` (
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `clubs_players_idx` (`club_id` ASC),
-  CONSTRAINT `fk_clubs_players`
+  INDEX `diez` (`club_id` ASC),
+  CONSTRAINT `once`
     FOREIGN KEY (`club_id`)
     REFERENCES `highperformancedb`.`clubs` (`id`)
     ON DELETE NO ACTION
