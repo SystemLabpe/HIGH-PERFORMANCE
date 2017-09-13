@@ -3,23 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Look! I'm CRUDding</title>
+    <title>Alto Rendimiento</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
 
     <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
+        <!-- <div class="navbar-header">
             <a class="navbar-brand" href="{{ URL::to('seasons') }}">Nerd Alert</a>
-        </div>
+        </div> -->
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('seasons') }}">View All Nerds</a></li>
-            <!--<li><a href="{{ URL::to('seasons/create') }}">Create a Nerd</a>-->
+            <li><a href="{{ URL::to('seasons') }}">Temporadas</a></li>
+            <li><a href="{{ URL::to('seasons/create') }}">Crear Temporada</a>
         </ul>
     </nav>
 
-    <h1>All the Nerds</h1>
+    <h1>Temporadas</h1>
 
     <!-- will be used to show any messages -->
     @if (Session::has('message'))
@@ -29,15 +29,13 @@
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Email</td>
+            <td>Temporada</td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
         @foreach($seasons as $key => $value)
             <tr>
-                <td>{{ $value->id }}</td>
                 <td>{{ $value->name }}</td>
 
 
@@ -48,10 +46,10 @@
                     <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                     <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('seasons/' . $value->id) }}">Show this Nerd</a>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('seasons/' . $value->id) }}">Detalle</a>
 
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('seasons/' . $value->id . '/edit') }}">Edit this Nerd</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('seasons/' . $value->id . '/edit') }}">Editar</a>
 
                 </td>
             </tr>
