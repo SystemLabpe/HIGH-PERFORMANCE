@@ -14,7 +14,7 @@
         @foreach($tournaments as $key => $value)
             <tr>
                 <td>{{ $value->name }}</td>
-                <td>{{ $value->seasons->name }}</td>
+                <td>{{ $value->season->name }}</td>
 
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>

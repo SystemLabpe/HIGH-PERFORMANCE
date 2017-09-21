@@ -4,15 +4,7 @@
 </div>
 
 <div class="form-group">
-	{!! Form::select('season',$seasons, null, array('class' => 'form-control')) !!}
-
-	<!-- <select name="myselect">
-	@foreach ($seasons as $key => $value)
-	    <option value="{{ $key }}"
-	    
-	    >{{ $value }}</option>
-	@endforeach
-	</select> -->
+	{!! Form::select('season_id',$seasons->pluck('name','id'), null, array('class' => 'form-control')) !!}
 </div>
 
 <div class="form-group">
