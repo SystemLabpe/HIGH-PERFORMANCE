@@ -21,7 +21,7 @@ class Tournament extends Model
 
     ];
 
-    public function Season(){
+    public function season(){
         return $this->belongsTo('App\Season')->withTimestamps();
     }
 

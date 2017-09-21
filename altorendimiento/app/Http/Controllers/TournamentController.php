@@ -45,15 +45,18 @@ class TournamentController extends Controller
 
     public function show($id)
     {
-        $tournament = Tournament::find($id);
-        return view('tournament.tournament_detail',compact('tournament'));
+        $tournament = Tournament::with('season')->find($id);
+        $players = Player::where(club_id,'=',Auth::user()->club_id)->get();
+        return view('tournament.tournament_detail',compact('tournament','players'));
     }
 
 
     public function edit($id)
     {
-        $tournament = Tournament::find($id);
-        return view('$tournament.tournament_edit',compact('tournament'));
+        $tournament = Tournament::with(['players','season'])->find($id);
+        $seasons = Season::orderBy('updated_at')->get();
+        $players = Player::where(club_id,'=',Auth::user()->club_id)->get();
+        return view('$tournament.tournament_edit',compact('tournament','seasons','players'));
     }
 
 
