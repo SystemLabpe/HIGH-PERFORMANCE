@@ -264,6 +264,10 @@
                             <a href="{{ url ('players') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Jugadores</a>
                         </li>
 
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('tournaments') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Torneos</a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
