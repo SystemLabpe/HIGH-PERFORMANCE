@@ -30,7 +30,6 @@ class SeasonController extends Controller
         $season->date_init = $request->date_init;
         $season->date_end = $request->date_end;
         $season->club_id = Auth::user()->club_id;
-
         $season->save();
 
         return redirect()->route('seasons.index');

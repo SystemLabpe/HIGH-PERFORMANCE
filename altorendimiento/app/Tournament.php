@@ -26,6 +26,6 @@ class Tournament extends Model
     }
 
     public function players(){
-        return $this->belongsToMany('App\Players','tournament_player','tournament_id','player_id')->withPivot('player_number')->withTimestamps();
+        return $this->belongsToMany('App\Player','tournament_player','tournament_id','player_id')->withPivot('player_number');
     }
 }
