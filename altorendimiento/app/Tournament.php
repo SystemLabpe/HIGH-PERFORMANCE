@@ -22,7 +22,7 @@ class Tournament extends Model
     ];
 
     public function season(){
-        return $this->belongsTo('App\Season')->withTimestamps();
+        return $this->belongsTo('App\Season');
     }
 
     public function players(){
