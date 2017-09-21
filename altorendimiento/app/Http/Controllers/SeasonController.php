@@ -37,14 +37,15 @@ class SeasonController extends Controller
      */
     public function store(Request $request)
     {
-        $seasons = new Season();
-        $seasons->name = $request->name;
-        $seasons->date_init = $request->date_init;
-        $seasons->date_end = $request->date_end;
-        $seasons->club_id = 1;
+        $season = new Season();
+        $season->name = $request->name;
+        $season->date_init = $request->date_init;
+        $season->date_end = $request->date_end;
+        $season->club_id = 1;
 
-        $seasons->save();
-        return view('/season_list');
+        $season->save();
+
+        return redirect()->route('seasons.index');
     }
 
     /**

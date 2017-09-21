@@ -7,15 +7,12 @@
 <body>
     <div class="container">
 
-        <nav class="navbar navbar-inverse">
-            <!-- <div class="navbar-header">
-                <a class="navbar-brand" href="{{ URL::to('seasons') }}">Nerd Alert</a>
-            </div> -->
-            <ul class="nav navbar-nav">
-                <li><a href="{{ URL::to('seasons') }}">Temporadas</a></li>
-                <li><a href="{{ URL::to('seasons/create') }}">Crear Temporada</a>
-            </ul>
-        </nav>
     </div>
+
+    @yield('content')
+
+    <!-- Scripts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

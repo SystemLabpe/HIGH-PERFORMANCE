@@ -21,7 +21,7 @@
 
     <h1>Crear Temporada</h1>
 
-    {!! Form::open(array('url' => 'seasons')) !!}
+    {!! Form::open(['route' => 'seasons.store']) !!}
 
         <div class="form-group">
             {!! Form::label('name', 'Temporada') !!}
