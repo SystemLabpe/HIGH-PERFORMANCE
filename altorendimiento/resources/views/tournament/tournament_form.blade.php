@@ -22,7 +22,7 @@
     <thead>
         <tr>
             <td>Jugador</td>
-            <td></td>
+            <td>#</td>
             <!-- <td><a class="btn btn-small btn-warning" href="{{ URL::to('players/create') }}">Crear</a></td> -->
         </tr>
     </thead>
@@ -31,9 +31,10 @@
         <tr>
             <td>{{ $value->name }}</td>
 
-            <!-- we will also add show, edit, and delete buttons -->
+			<td>{!! Form::number('player_name_'.$players[$key]->id, null, array('class' => 'form-control')) !!}</td>            
+
             <td> 
-				{{ Form::checkbox('players_id[]', $value->id) }} 
+            	{!! Form::checkbox('players_id[]', $value->id, in_array($value->id, [5])) !!} 
             </td>
         </tr>
     @endforeach
