@@ -67,9 +67,7 @@ class SeasonController extends Controller
      */
     public function edit($id)
     {
-        Log::info('Hola');
         $season = Season::find($id);
-//        return view('/season_edit',compact('season'));
         return view('/season_edit',compact('season'));
     }
 
@@ -87,6 +85,7 @@ class SeasonController extends Controller
         $season->date_init = $request->date_init;
         $season->date_end = $request->date_end;
         $season->club_id = 1;
+        $season->save();
         return view('/season_detail',compact('season'));
     }
 
