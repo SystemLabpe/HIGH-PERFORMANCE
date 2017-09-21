@@ -21,7 +21,7 @@ class TournamentController extends Controller
 {
     public function index()
     {
-        $tournaments = Tournament::get();
+        $tournaments = Tournament::with('season')->get();
         return view('tournament.tournament_list', compact('tournaments'));
     }
 
