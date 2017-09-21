@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('seasons','SeasonController');
 
+Route::resource('players','PlayerController');
+
