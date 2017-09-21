@@ -1,43 +1,18 @@
-<!-- app/views/nerds/index.blade.php -->
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Alto Rendimiento</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-
-    <nav class="navbar navbar-inverse">
-        <!-- <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('seasons') }}">Nerd Alert</a>
-        </div> -->
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('players') }}">Jugadores</a></li>
-            <li><a href="{{ URL::to('players/create') }}">Crear Jugador</a>
-        </ul>
-    </nav>
-
-    <h1>Jugadores</h1>
-
-    <!-- will be used to show any messages -->
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
-
+@extends('layouts.dashboard')
+@section('page_heading','Jugadores')
+@section('section')
+<div class="col-md-12">
     <table class="table table-striped table-bordered">
         <thead>
-        <tr>
-            <td>Jugador</td>
-            <td></td>
-        </tr>
+            <tr>
+                <td>Jugador</td>
+                <td><a class="btn btn-small btn-warning" href="{{ URL::to('players/create') }}">Crear</a></td>
+            </tr>
         </thead>
         <tbody>
         @foreach($players as $key => $value)
             <tr>
                 <td>{{ $value->name }}</td>
-
 
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>
@@ -58,5 +33,4 @@
     </table>
 
 </div>
-</body>
-</html>
+@stop
