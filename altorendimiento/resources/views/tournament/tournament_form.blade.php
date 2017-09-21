@@ -27,14 +27,14 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($players as $player)
+    @foreach($players as $key => $player)
         <tr>
             <td>{{ $player->name }}</td>
 
-			<td>{!! Form::number($player->player_number, null, array('class' => 'form-control')) !!}</td>            
+			<td>{!! Form::number('player['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>            
 
             <td> 
-            	{!! Form::checkbox($player['is_checked'], true) !!} 
+            	{!! Form::checkbox('player['.$key.'][is_checked]', true) !!} 
             </td>
         </tr>
     @endforeach
