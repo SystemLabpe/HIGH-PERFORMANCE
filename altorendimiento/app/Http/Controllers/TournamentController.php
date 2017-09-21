@@ -28,7 +28,7 @@ class TournamentController extends Controller
     public function create()
     {
         $seasons = Season::orderBy('updated_at')->get();
-        $players = Player::where(club_id,'=',Auth::user()->club_id)->get();
+        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
         return view('tournament.tournament_add',compact('seasons','players'));
     }
 
@@ -46,7 +46,7 @@ class TournamentController extends Controller
     public function show($id)
     {
         $tournament = Tournament::with('season')->find($id);
-        $players = Player::where(club_id,'=',Auth::user()->club_id)->get();
+        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
         return view('tournament.tournament_detail',compact('tournament','players'));
     }
 
@@ -55,7 +55,7 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::with(['players','season'])->find($id);
         $seasons = Season::orderBy('updated_at')->get();
-        $players = Player::where(club_id,'=',Auth::user()->club_id)->get();
+        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
         return view('$tournament.tournament_edit',compact('tournament','seasons','players'));
     }
 
