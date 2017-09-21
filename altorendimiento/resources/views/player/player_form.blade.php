@@ -5,12 +5,12 @@
 
 <div class="form-group">
     {!! Form::label('height', 'Talla (m)') !!}
-    {!! Form::date('height', null, array('class' => 'form-control')) !!}
+    {!! Form::number('height', null, ['class' => 'form-control','step'=>'any']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('weight', 'Peso (Kg)') !!}
-    {!! Form::date('weight', null, array('class' => 'form-control')) !!}
+    {!! Form::number('weight', null, array('class' => 'form-control')) !!}
 </div>
 
 <div class="form-group">
