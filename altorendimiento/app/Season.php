@@ -23,6 +23,6 @@ class Season extends Model
     ];
 
     public function club(){
-        return $this->belongsTo('App\Club')->withTimestamps();
+        return $this->belongsTo('App\Club');
     }
 }
