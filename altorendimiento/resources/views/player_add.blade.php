@@ -1,4 +1,11 @@
-<!-- app/views/nerds/index.blade.php -->
+@extends('layouts.dashboard')
+@section('page_heading','Jugadores')
+@section('section')
+<div class="col-md-12">
+    <h2>Crear Jugador</h2>
+
+</div>
+
 
 <!DOCTYPE html>
 <html>

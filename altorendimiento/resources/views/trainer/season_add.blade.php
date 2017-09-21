@@ -6,7 +6,7 @@
 
     {!! Form::open(['route' => 'seasons.store']) !!}
 
-        @include('season_form')
+        @include('trainer.season_form')
 
     {!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}
 

@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <td>Temporada</td>
-                <td></td>
+                <td><a class="btn btn-small btn-warning" href="{{ URL::to('seasons/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>

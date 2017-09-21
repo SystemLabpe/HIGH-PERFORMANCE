@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('home') }}">Alto Rendimiento</a>
+                <a class="navbar-brand" href="{{ url ('/') }}">Alto Rendimiento</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -222,7 +222,15 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="{{ url ('login') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+
+                            <!-- <a href="{{ url ('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a> -->
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -249,7 +257,7 @@
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('entrenador/seasons') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Temporadas</a>
+                            <a href="{{ url ('seasons') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Temporadas</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>

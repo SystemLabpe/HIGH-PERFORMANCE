@@ -16,7 +16,7 @@ class SeasonController extends Controller
     public function index()
     {
         $seasons = Season::get();
-        return view('season_list', compact('seasons'));
+        return view('trainer.season_list', compact('seasons'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SeasonController extends Controller
      */
     public function create()
     {
-        return view('season_add');
+        return view('trainer.season_add');
     }
 
     /**
@@ -57,7 +57,7 @@ class SeasonController extends Controller
     public function show($id)
     {
         $season = Season::find($id);
-        return view('/season_detail',compact('season'));
+        return view('trainer.season_detail',compact('season'));
     }
 
     /**
@@ -69,7 +69,7 @@ class SeasonController extends Controller
     public function edit($id)
     {
         $season = Season::find($id);
-        return view('/season_edit',compact('season'));
+        return view('trainer.season_edit',compact('season'));
     }
 
     /**
@@ -87,7 +87,7 @@ class SeasonController extends Controller
         $season->date_end = $request->date_end;
         $season->club_id = 1;
         $season->save();
-        return view('/season_detail',compact('season'));
+        return redirect()->route('seasons.index');
     }
 
     /**
