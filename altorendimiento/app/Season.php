@@ -13,5 +13,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Season extends Model
 {
+    protected $fillable = [
+        'name','date_init','date_end'
+    ];
 
+
+    protected $hidden = [
+
+    ];
+
+    public function club(){
+        return $this->belongsTo('App\Club')->withTimestamps();
+    }
 }
