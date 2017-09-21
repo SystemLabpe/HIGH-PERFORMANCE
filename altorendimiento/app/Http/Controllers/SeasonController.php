@@ -8,33 +8,18 @@ use Log;
 
 class SeasonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $seasons = Season::get();
-        return view('trainer.season_list', compact('seasons'));
+        return view('season.season_list', compact('seasons'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('trainer.season_add');
+        return view('season.season_add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $season = new Season();
@@ -48,37 +33,18 @@ class SeasonController extends Controller
         return redirect()->route('seasons.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Season  $season
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $season = Season::find($id);
-        return view('trainer.season_detail',compact('season'));
+        return view('season.season_detail',compact('season'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Season  $season
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $season = Season::find($id);
-        return view('trainer.season_edit',compact('season'));
+        return view('season.season_edit',compact('season'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Season  $season
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $season = Season::find($id);
@@ -90,14 +56,8 @@ class SeasonController extends Controller
         return redirect()->route('seasons.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Season  $season
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Season $season)
+    public function destroy($id)
     {
-        //
+
     }
 }
