@@ -24,3 +24,5 @@ Route::resource('seasons','SeasonController');
 
 Route::resource('players','PlayerController');
 
+Route::resource('tournaments','TournamentController');
+
