@@ -23,12 +23,14 @@
         <tr>
             <td>Jugador</td>
             <td>#</td>
+            <td></td>
             <!-- <td><a class="btn btn-small btn-warning" href="{{ URL::to('players/create') }}">Crear</a></td> -->
         </tr>
     </thead>
     <tbody>
     @foreach($players as $key => $player)
         <tr>
+        	{{ Form::hidden('players['.$key.'][id]', $player->id) }}
             <td>{{ $player->name }}</td>
 
 			<td>{!! Form::number('players['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>            
