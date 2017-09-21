@@ -35,15 +35,25 @@ class TournamentController extends Controller
 
     public function store(Request $request)
     {
-        Log::info($request->getContent());
-        Log::info($request->players);
         $tournament = new Tournament();
         $tournament->name = $request->name;
         $tournament->date_init = $request->date_init;
         $tournament->date_end = $request->date_end;
         $tournament->season_id = $request->season_id;
         $tournament->save();
-        $tournament->players()->sync($request->players_id);
+
+        Log::info(json_encode($request->players));
+        if(count($request->players)>0){
+            $pivot = [];
+            foreach ($request->players as $player){
+                if(property_exists($player, 'is_checked')){
+                    $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+                }
+            }
+        }
+        Log::info($pivot);
+
+//        $tournament->players()->sync($request->players_id);
         return redirect()->route('tournaments.index');
     }
 

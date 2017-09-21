@@ -31,10 +31,10 @@
         <tr>
             <td>{{ $player->name }}</td>
 
-			<td>{!! Form::number('players['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>            
+			<td>{!! Form::number('players['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>
 
             <td> 
-            	{!! Form::checkbox('players['.$key.'][is_checked]', true) !!} 
+            	{!! Form::checkbox('players['.$key.'][is_checked]', true) !!}
             </td>
         </tr>
     @endforeach
