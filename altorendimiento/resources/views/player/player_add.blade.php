@@ -4,9 +4,9 @@
 <div class="col-md-12">
     <h2>Crear Jugador</h2>
 
-	{!! Form::open(['route' => 'player.store']) !!}  
+	{!! Form::open(['route' => 'players.store']) !!}
 
-      @include('player.season_form')
+      @include('player.player_form')
 
     {!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}
 
