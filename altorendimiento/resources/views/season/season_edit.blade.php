@@ -6,7 +6,7 @@
 
     {!! Form::model($season, ['route' => ['seasons.update', $season->id], 'method' => 'PUT']) !!}
 
-        @include('trainer.season_form')
+        @include('season.season_form')
 
     {!! Form::submit('Editar', array('class' => 'btn btn-primary')) !!}
 
