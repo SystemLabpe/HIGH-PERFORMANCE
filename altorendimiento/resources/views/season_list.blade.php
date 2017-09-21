@@ -21,17 +21,12 @@
 
     <h1>Temporadas</h1>
 
-    <!-- will be used to show any messages -->
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
-
     <table class="table table-striped table-bordered">
         <thead>
-        <tr>
-            <td>Temporada</td>
-            <td></td>
-        </tr>
+            <tr>
+                <td>Temporada</td>
+                <td></td>
+            </tr>
         </thead>
         <tbody>
         @foreach($seasons as $key => $value)

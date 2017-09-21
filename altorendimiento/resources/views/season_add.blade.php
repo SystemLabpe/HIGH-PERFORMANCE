@@ -20,29 +20,27 @@
     </nav>
 
     <h1>Crear Temporada</h1>
-    <!-- if there are creation errors, they will show here -->
-    {{ HTML::ul($errors->all() )}}
 
-    {{ Form::open(array('url' => 'seasons')) }}
+    {!! Form::open(array('url' => 'seasons')) !!}
 
         <div class="form-group">
-            {{ Form::label('name', 'Temporada') }}
-            {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
+            {!! Form::label('name', 'Temporada') !!}
+            {!! Form::text('name', null, array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">
-            {{ Form::label('date_init', 'Fecha de Inicio') }}
-            {{ Form::date('date_init', Input::old('date_init'), array('class' => 'form-control')) }}
+            {!! Form::label('date_init', 'Fecha de Inicio') !!}
+            {!! Form::date('date_init', null, array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">
-            {{ Form::label('date_end', 'Fecha de Termino') }}
-            {{ Form::date('date_end', Input::old('date_end'), array('class' => 'form-control')) }}
+            {!! Form::label('date_end', 'Fecha de Termino') !!}
+            {!! Form::date('date_end', null, array('class' => 'form-control')) !!}
         </div>
 
-    {{ Form::submit('Temporada Creada', array('class' => 'btn btn-primary')) }}
+    {!! Form::submit('Temporada Creada', array('class' => 'btn btn-primary')) !!}
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
 </div>
 </body>
