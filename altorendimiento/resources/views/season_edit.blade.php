@@ -21,29 +21,29 @@
 
     <h1>Editar Temporada {{ $season->name }}</h1>
     <!-- if there are creation errors, they will show here -->
-    {{ HTML::ul($errors->all() )}}
+    {{--{{ HTML::ul($errors->all() )}}--}}
 
-    {{ Form::open(array('url' => 'nerds')) }}
-    {{ Form::model($season, array('action' => array('SeasonController@update', $season->id), 'method' => 'PUT')) }}
+    {!! Form::open(array('url' => 'seasons')) !!}
+    {!! Form::model($season, array('action' => array('SeasonController@update', $season->id), 'method' => 'PUT')) !!}
 
         <div class="form-group">
-            {{ Form::label('name', 'Temporada') }}
-            {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
+            {!!  Form::label('name', 'Temporada') !!}
+            {!! Form::text('name', null , array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">
-            {{ Form::label('date_init', 'Fecha de Inicio') }}
-            {{ Form::date('date_init', Input::old('date_init'), array('class' => 'form-control')) }}
+            {!! Form::label('date_init', 'Fecha de Inicio') !!}
+            {!! Form::date('date_init', null, array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">
-            {{ Form::label('date_end', 'Fecha de Termino') }}
-            {{ Form::date('date_end', Input::old('date_end'), array('class' => 'form-control')) }}
+            {!! Form::label('date_end', 'Fecha de Termino') !!}
+            {!! Form::date('date_end', null, array('class' => 'form-control')) !!}
         </div>
 
-    {{ Form::submit('Temporada Editada!', array('class' => 'btn btn-primary')) }}
+    {!! Form::submit('Editar', array('class' => 'btn btn-primary')) !!}
 
-    {{ Form::close() }}
+    {!! Form::close() !!}
 
 </div>
 </body>

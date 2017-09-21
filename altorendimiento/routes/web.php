@@ -21,9 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('/seasons', 'SeasonController@index')->name('seasons');
-Route::post('/seasons/create', 'SeasonController@create')->name('seasons');
-Route::get('/seasons/{id}', 'SeasonController@show')->name('seasons');
-Route::get('/seasons/{id}/edit', 'SeasonController@edit')->name('seasons');
-Route::put('/seasons/{id}/update', 'SeasonController@update')->name('seasons');
+Route::get('/seasons', 'SeasonController@index');
+Route::post('/seasons/create', 'SeasonController@create');
+Route::get('/seasons/{id}', 'SeasonController@show');
+Route::get('/seasons/{id}/edit', 'SeasonController@edit');
+Route::put('/seasons/{id}/update', 'SeasonController@update');
 

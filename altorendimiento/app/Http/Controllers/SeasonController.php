@@ -65,9 +65,11 @@ class SeasonController extends Controller
      * @param  \App\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,$id)
+    public function edit($id)
     {
+        Log::info('Hola');
         $season = Season::find($id);
+//        return view('/season_edit',compact('season'));
         return view('/season_edit',compact('season'));
     }
 
