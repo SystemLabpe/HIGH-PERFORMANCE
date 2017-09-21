@@ -20,10 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-Route::get('/seasons', 'SeasonController@index');
-Route::post('/seasons/create', 'SeasonController@create');
-Route::get('/seasons/{id}', 'SeasonController@show');
-Route::get('/seasons/{id}/edit', 'SeasonController@edit');
-Route::put('/seasons/{id}/update', 'SeasonController@update');
+Route::resource('seasons','SeasonController');
 
