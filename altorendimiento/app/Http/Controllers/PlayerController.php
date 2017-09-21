@@ -17,58 +17,57 @@ class PlayerController extends Controller
 
     public function index()
     {
-        $player = Player::get();
-        return view('player_list', compact('seasons'));
+        $players = Player::get();
+        return view('player.player_list', compact('players'));
     }
 
 
     public function create()
     {
-        return view('player_add');
+        return view('player.player_add');
     }
-
 
     public function store(Request $request)
     {
-        $season = new Player();
-        $season->name = $request->name;
-        $season->date_init = $request->date_init;
-        $season->date_end = $request->date_end;
-        $season->club_id = 1;
+        $player = new Player();
+        $player->name = $request->name;
+        $player->height = $request->date_init;
+        $player->weight = $request->date_end;
+        $player->birth_date = $request->birth_date;
+        $player->club_id = 1;
+        $player->save();
 
-        $season->save();
-
-        return redirect()->route('seasons.index');
+        return redirect()->route('players.index');
     }
-
 
     public function show($id)
     {
-        $season = Season::find($id);
-        return view('/season_detail',compact('season'));
+        $player = Player::find($id);
+        return view('player.player_detail',compact('player'));
     }
 
 
     public function edit($id)
     {
-        $season = Season::find($id);
-        return view('/season_edit',compact('season'));
+        $player = Player::find($id);
+        return view('player.player_edit',compact('player'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $season = Season::find($id);
-        $season->name = $request->name;
-        $season->date_init = $request->date_init;
-        $season->date_end = $request->date_end;
-        $season->club_id = 1;
-        $season->save();
-        return view('/season_detail',compact('season'));
+        $player = Player::find($id);
+        $player->name = $request->name;
+        $player->height = $request->date_init;
+        $player->weight = $request->date_end;
+        $player->birth_date = $request->birth_date;
+        $player->club_id = 1;
+        $player->save();
+        return redirect()->route('players.index');
     }
 
 
-    public function destroy(Season $season)
+    public function destroy($id)
     {
         //
     }
