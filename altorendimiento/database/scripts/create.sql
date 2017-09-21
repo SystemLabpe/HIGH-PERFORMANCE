@@ -168,7 +168,6 @@ DROP TABLE IF EXISTS `highperformancedb`.`tournament_player` ;
 CREATE TABLE IF NOT EXISTS `highperformancedb`.`tournament_player` (
   `tournament_id` INT(11) NOT NULL,
   `player_id` INT(11) NOT NULL,
-  `player_id` INT(11) NOT NULL,
   `player_number` CHAR(2) NOT NULL,
   PRIMARY KEY (`tournament_id`, `player_id`),
   INDEX `tour_tour_play_idx` (`tournament_id` ASC),

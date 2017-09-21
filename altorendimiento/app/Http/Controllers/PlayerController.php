@@ -8,9 +8,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use App\Player;
+
+
 use Log;
 
 class PlayerController extends Controller
@@ -25,8 +28,6 @@ class PlayerController extends Controller
 
     public function create()
     {
-        $user = Auth::user();
-        Log::info($user);
         return view('player.player_add');
     }
 
@@ -37,7 +38,7 @@ class PlayerController extends Controller
         $player->height = $request->height;
         $player->weight = $request->weight;
         $player->birth_date = $request->birth_date;
-        $player->club_id = 1;
+        $player->club_id = Auth::user()->club_id;
         $player->save();
 
         return redirect()->route('players.index');
@@ -64,7 +65,7 @@ class PlayerController extends Controller
         $player->height = $request->height;
         $player->weight = $request->weight;
         $player->birth_date = $request->birth_date;
-        $player->club_id = 1;
+        $player->club_id = Auth::user()->club_id;
         $player->save();
         return redirect()->route('players.index');
     }

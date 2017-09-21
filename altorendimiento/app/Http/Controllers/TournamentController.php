@@ -8,8 +8,12 @@
 
 namespace App;
 
-use App\Tournament;
 use Illuminate\Http\Request;
+
+use App\Tournament;
+use App\Season;
+use App\Player;
+
 use Log;
 
 class TournamentController extends Controller
@@ -23,7 +27,9 @@ class TournamentController extends Controller
 
     public function create()
     {
-        return view('tournament.tournament_add');
+        $seasons = Season::orderBy('updated_at')->get();
+        $players = Player::where(club_id,'=',Auth::user()->club_id)->get();
+        return view('tournament.tournament_add',compact('seasons','players'));
     }
 
     public function store(Request $request)

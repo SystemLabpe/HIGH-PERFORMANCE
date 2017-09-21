@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Season;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Season;
+
 use Log;
 
 class SeasonController extends Controller
@@ -26,7 +29,7 @@ class SeasonController extends Controller
         $season->name = $request->name;
         $season->date_init = $request->date_init;
         $season->date_end = $request->date_end;
-        $season->club_id = 1;
+        $season->club_id = Auth::user()->club_id;
 
         $season->save();
 
@@ -51,7 +54,7 @@ class SeasonController extends Controller
         $season->name = $request->name;
         $season->date_init = $request->date_init;
         $season->date_end = $request->date_end;
-        $season->club_id = 1;
+        $season->club_id = Auth::user()->club_id;
         $season->save();
         return redirect()->route('seasons.index');
     }
