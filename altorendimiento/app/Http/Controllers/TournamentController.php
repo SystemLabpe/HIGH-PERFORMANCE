@@ -29,8 +29,8 @@ class TournamentController extends Controller
     public function create()
     {
         $seasons = Season::orderBy('updated_at')->get();
-        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
-        return view('tournament.tournament_add',compact('seasons','players'));
+        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
+        return view('tournament.tournament_add',compact('seasons','allPlayers'));
     }
 
     public function store(Request $request)
