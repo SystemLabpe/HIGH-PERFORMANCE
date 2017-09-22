@@ -66,12 +66,12 @@ class TournamentController extends Controller
     public function edit($id)
     {
         $tournament = Tournament::with(['players','season'])->find($id);
-
-
+        Log::info($tournament);
+        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
 
         $seasons = Season::orderBy('updated_at')->get();
 
-        return view('$tournament.tournament_edit',compact('tournament','seasons'));
+        return view('tournament.tournament_edit',compact('tournament','seasons','players'));
     }
 
 
