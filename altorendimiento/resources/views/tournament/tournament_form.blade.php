@@ -28,15 +28,16 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($players as $key => $player)
+    @foreach($allPlayers as $key => $player)
         <tr>
-        	{{ Form::hidden('players['.$key.'][id]', $player->id) }}
+        	{{ Form::hidden('allPlayers['.$key.'][id]', $player->id) }}
             <td>{{ $player->name }}</td>
 
-			<td>{!! Form::number('players['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>
+			<td>{!! Form::number('allPlayers['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>
 
             <td> 
-            	{!! Form::checkbox('players['.$key.'][is_checked]', true, in_array($player->id,$tournament->players[]->id)) !!} 
+            	<!-- {!! Form::checkbox('players['.$key.'][is_checked]', true, in_array($player,players)) !!}  -->
+                {!! Form::checkbox('allPlayers['.$key.'][is_checked]', true, $tournament->players->contains($player->id)) !!} 
             	
             </td>
         </tr>
