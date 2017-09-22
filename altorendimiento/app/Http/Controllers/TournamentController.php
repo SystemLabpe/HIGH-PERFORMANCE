@@ -42,18 +42,16 @@ class TournamentController extends Controller
         $tournament->season_id = $request->season_id;
         $tournament->save();
 
-        Log::info(json_encode($request->players));
         if(count($request->players)>0){
             $pivot = [];
             foreach ($request->players as $player){
-                if(property_exists($player, 'is_checked')){
+                $player = (object)$player;
+                if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
                 }
             }
         }
-        Log::info($pivot);
-
-//        $tournament->players()->sync($request->players_id);
+        $tournament->players()->sync($pivot);
         return redirect()->route('tournaments.index');
     }
 
@@ -68,9 +66,12 @@ class TournamentController extends Controller
     public function edit($id)
     {
         $tournament = Tournament::with(['players','season'])->find($id);
+
+        
+
         $seasons = Season::orderBy('updated_at')->get();
-        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
-        return view('$tournament.tournament_edit',compact('tournament','seasons','players'));
+
+        return view('$tournament.tournament_edit',compact('tournament','seasons'));
     }
 
 
@@ -83,7 +84,17 @@ class TournamentController extends Controller
         $tournament->season_id = $request->season_id;
         $tournament->player_number = '10';
         $tournament->save();
-        $tournament->players()->sync($request->players_id);
+
+        if(count($request->players)>0){
+            $pivot = [];
+            foreach ($request->players as $player){
+                $player = (object)$player;
+                if(array_key_exists('is_checked',$player)){
+                    $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+                }
+            }
+        }
+        $tournament->players()->sync($pivot);
         return redirect()->route('tournaments.index');
     }
 
