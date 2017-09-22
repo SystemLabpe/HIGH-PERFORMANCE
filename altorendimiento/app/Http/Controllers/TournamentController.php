@@ -29,6 +29,7 @@ class TournamentController extends Controller
     public function create()
     {
         $tournament = new Tournament();
+        $tournament->players = [];
 
         $seasons = Season::orderBy('updated_at')->get();
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
@@ -44,9 +45,9 @@ class TournamentController extends Controller
         $tournament->season_id = $request->season_id;
         $tournament->save();
 
-        if(count($request->players)>0){
+        if(count($request->allplayers)>0){
             $pivot = [];
-            foreach ($request->players as $player){
+            foreach ($request->allplayers as $player){
                 $player = (object)$player;
                 if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
@@ -98,9 +99,9 @@ class TournamentController extends Controller
         $tournament->player_number = '10';
         $tournament->save();
 
-        if(count($request->players)>0){
+        if(count($request->allplayers)>0){
             $pivot = [];
-            foreach ($request->players as $player){
+            foreach ($request->allplayers as $player){
                 $player = (object)$player;
                 if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
