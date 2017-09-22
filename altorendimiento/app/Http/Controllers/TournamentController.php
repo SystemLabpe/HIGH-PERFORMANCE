@@ -67,7 +67,7 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::with(['players','season'])->find($id);
 
-        
+
 
         $seasons = Season::orderBy('updated_at')->get();
 
