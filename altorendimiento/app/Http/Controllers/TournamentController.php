@@ -52,8 +52,9 @@ class TournamentController extends Controller
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
                 }
             }
+            $tournament->players()->sync($pivot);
         }
-        $tournament->players()->sync($pivot);
+
         return redirect()->route('tournaments.index');
     }
 
@@ -104,8 +105,9 @@ class TournamentController extends Controller
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
                 }
             }
+            $tournament->players()->sync($pivot);
         }
-        $tournament->players()->sync($pivot);
+
         return redirect()->route('tournaments.index');
     }
 
