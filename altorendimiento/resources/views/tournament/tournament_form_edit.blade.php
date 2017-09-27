@@ -17,7 +17,7 @@
     {!! Form::label('date_end', 'Fecha de Termino') !!}
     {!! Form::date('date_end', null, array('class' => 'form-control')) !!}
 </div>
-{{count($tournament->players)}}
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -31,12 +31,14 @@
     @foreach($allPlayers as $key => $player)
         <tr>
         	{!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
+
+
             <td>{{ $player }}</td>
 
-			<td>{!! Form::number('allPlayers['.$key.'][player_number]', null, array('class' => 'form-control')) !!}</td>
+			<td>{!! Form::number('allPlayers['.$key.'][player_number]', $player->player_number, array('class' => 'form-control')) !!}</td>
 
             <td> 
-                {!! Form::checkbox('allPlayers['.$key.'][is_checked]', true, $tournament->players->contains($player->id) ? 1 : 0) !!} 	
+                {!! Form::checkbox('allPlayers['.$key.'][is_checked]', true, $player->is_checked ? 1 : 0) !!} 	
             </td>
         </tr>
     @endforeach
