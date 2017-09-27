@@ -38,7 +38,9 @@ class TournamentController extends Controller
 
     public function store(Request $request)
     {
-        Log::info($request->allplayers);
+        Log::info($request);
+        $var = (array)($request->allPlayers);
+        Log::info($var);
         $tournament = new Tournament();
         $tournament->name = $request->name;
         $tournament->date_init = $request->date_init;
@@ -46,9 +48,9 @@ class TournamentController extends Controller
         $tournament->season_id = $request->season_id;
         $tournament->save();
 
-        if(count($request->allplayers)>0){
+        if(count($request->allPlayers)>0){
             $pivot = [];
-            foreach ($request->allplayers as $player){
+            foreach ($request->allPlayers as $player){
                 $player = (object)$player;
                 if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
