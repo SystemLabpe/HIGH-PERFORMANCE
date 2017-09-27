@@ -4,9 +4,9 @@
 <div class="col-md-12">
     <h2>Crear Equipo Rival</h2>
 
-    {!! Form::open(['route' => 'seasons.store']) !!}
+    {!! Form::open(['route' => 'rival_teams.store']) !!}
 
-        @include('season.season_form')
+        @include('rival_team.rival_team_form')
 
     {!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}
 
