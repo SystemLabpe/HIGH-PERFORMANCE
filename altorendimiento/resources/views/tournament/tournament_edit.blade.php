@@ -6,7 +6,7 @@
 
     {!! Form::model($tournament, ['route' => ['tournaments.update', $tournament->id], 'method' => 'PUT']) !!}
 
-        @include('tournament.tournament_form')
+        @include('tournament.tournament_form_edit')
 
     {!! Form::submit('Editar', array('class' => 'btn btn-primary')) !!}
 
