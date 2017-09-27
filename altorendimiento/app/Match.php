@@ -14,8 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 class Match extends Model
 {
 
+    protected $table = "matchs";
+
     protected $fillable = [
-        'match_date','is_local','local_store','visitor_score'
+        'match_date','is_local','local_score','visitor_score'
     ];
 
 

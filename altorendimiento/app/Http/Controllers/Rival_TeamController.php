@@ -58,7 +58,7 @@ class Rival_TeamController extends Controller
 
     public function update(Request $request, $id)
     {
-        $rival_team = Player::find($id);
+        $rival_team = Rival_Team::find($id);
         $rival_team->name = $request->name;
 //        $rival_team->picture = $request->picture;
         $rival_team->club_id = Auth::user()->club_id;

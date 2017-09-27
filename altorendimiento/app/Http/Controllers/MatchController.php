@@ -15,6 +15,7 @@ use App\Match;
 use App\Tournament;
 use App\Rival_Team;
 use App\Stadium;
+use App\Player;
 
 
 use Log;
@@ -39,13 +40,16 @@ class MatchController extends Controller
 
     public function store(Request $request)
     {
+        Log::info($request);
         $match = new Match();
-        $match->match_date = $request->name;
-        $match->is_local = $request->date_init;
-        $match->local_store = $request->date_end;
-        $match->visitor_score = $request->tournament_id;
-        $match->visitor_score = $request->rival_team_id;
-        $match->visitor_score = $request->stadium_id;
+        $match->match_date = $request->match_date;
+        $match->is_local = $request->is_local;
+        $match->local_score = $request->local_score;
+        $match->visitor_score = $request->visitor_score;
+        $match->tournament_id = $request->tournament_id;
+        $match->rival_team_id = $request->rival_team_id;
+        $match->stadium_id = $request->stadium_id;
+
         $match->save();
 
         if(count($request->allPlayers)>0){
@@ -100,7 +104,7 @@ class MatchController extends Controller
 
     public function edit($id)
     {
-        $match = Match::with(['tournament','rival_team','stadium','players'])->find($id);
+        $match = Match::with(['tournament','rival_team','stadium'])->find($id);
 
         $tournaments = Tournament::with('season')->orderBy('updated_at')->get();
         $rival_teams = Rival_Team::where('club_id','=',Auth::user()->club_id)->get();
@@ -131,13 +135,16 @@ class MatchController extends Controller
 
     public function update(Request $request, $id)
     {
-        $match = Tournament::find($id);
-        $match->match_date = $request->name;
-        $match->is_local = $request->date_init;
-        $match->local_store = $request->date_end;
-        $match->visitor_score = $request->tournament_id;
-        $match->visitor_score = $request->rival_team_id;
-        $match->visitor_score = $request->stadium_id;
+        $match = Match::find($id);
+        $match->match_date = $request->match_date;
+        $match->is_local = $request->is_local;
+        $match->local_score = $request->local_score;
+        $match->visitor_score = $request->visitor_score;
+        $match->tournament_id = $request->tournament_id;
+        $match->rival_team_id = $request->rival_team_id;
+        $match->stadium_id = $request->stadium_id;
+
+
         $match->save();
 
         if(count($request->allPlayers)>0){

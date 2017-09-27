@@ -4,7 +4,7 @@
 <div class="col-md-12">
     <h2>Crear Partido</h2>
 
-    {!! Form::open(['route' => 'matches.store']) !!}
+    {!! Form::open(['route' => 'matchs.store']) !!}
 
         @include('match.match_form')
 

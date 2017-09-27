@@ -237,12 +237,12 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `highperformancedb`.`matchs` ;
 
 CREATE TABLE IF NOT EXISTS `highperformancedb`.`matchs` (
-  `id` INT(11) NOT NULL,
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
   `tournament_id` INT(11) NOT NULL,
   `rival_team_id` INT(11) NOT NULL,
   `match_date` DATE NULL DEFAULT NULL,
   `is_local` CHAR(1) NOT NULL,
-  `local_store` VARCHAR(200) NOT NULL,
+  `local_score` VARCHAR(200) NOT NULL,
   `visitor_score` VARCHAR(200) NOT NULL,
   `stadium_id` INT(11) NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT NULL,

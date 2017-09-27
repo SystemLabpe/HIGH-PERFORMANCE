@@ -277,7 +277,7 @@
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('players') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Partidos</a>
+                            <a href="{{ url ('matchs') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Partidos</a>
                         </li>
 
                     </ul>
