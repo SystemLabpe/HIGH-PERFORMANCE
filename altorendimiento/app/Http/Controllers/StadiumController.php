@@ -42,15 +42,15 @@ class StadiumController extends Controller
 
     public function show($id)
     {
-        $player = Stadium::find($id);
-        return view('stadium.stadium_detail',compact('player'));
+        $stadium = Stadium::find($id);
+        return view('stadium.stadium_detail',compact('stadium'));
     }
 
 
     public function edit($id)
     {
-        $player = Stadium::find($id);
-        return view('stadium.stadium_edit',compact('player'));
+        $stadium = Stadium::find($id);
+        return view('stadium.stadium_edit',compact('stadium'));
     }
 
 

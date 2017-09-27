@@ -4,7 +4,7 @@
 <div class="col-md-12">
     <h2>Crear Estadio</h2>
 
-    {!! Form::open(['route' => 'stadium.store']) !!}
+    {!! Form::open(['route' => 'stadiums.store']) !!}
 
         @include('stadium.stadium_form')
 

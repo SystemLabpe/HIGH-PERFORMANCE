@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rival_Team extends Model
 {
 
+    protected $table = "rival_teams";
+
     protected $fillable = [
         'name','picture'
     ];

@@ -6,11 +6,11 @@
         <thead>
             <tr>
                 <td>Estadio</td>
-                <td><a class="btn btn-small btn-warning" href="{{ URL::to('stadium/create') }}">Crear</a></td>
+                <td><a class="btn btn-small btn-warning" href="{{ URL::to('stadiums/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>
-        @foreach($stadium as $key => $value)
+        @foreach($stadiums as $key => $value)
             <tr>
                 <td>{{ $value->name }}</td>
 
@@ -21,12 +21,12 @@
                     <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                     <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('stadium/' . $value->id) }}">Detalle</a>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('stadiums/' . $value->id) }}">Detalle</a>
 
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('stadium/' . $value->id . '/edit') }}">Editar</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('stadiums/' . $value->id . '/edit') }}">Editar</a>
 
-                    {!! Form::open(['route' => ['stadium.destroy', $value->id], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['stadiums.destroy', $value->id], 'method' => 'DELETE']) !!}
                         <button class="btn btn-link">
                             Borrar
                         </button>
