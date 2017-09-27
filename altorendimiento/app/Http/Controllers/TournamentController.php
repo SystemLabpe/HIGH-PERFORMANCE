@@ -16,7 +16,6 @@ use App\Season;
 use App\Player;
 
 use Log;
-use PhpParser\Node\Expr\Cast\Object_;
 
 class TournamentController extends Controller
 {
@@ -59,8 +58,28 @@ class TournamentController extends Controller
     public function show($id)
     {
         $tournament = Tournament::with('season')->find($id);
-        $players = Player::where('club_id','=',Auth::user()->club_id)->get();
-        return view('tournament.tournament_detail',compact('tournament','players'));
+        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
+
+        if(count($allPlayers)>0){
+            foreach ($allPlayers as $allPlayer){
+                $addDefaultValues = true;
+                foreach ($tournament->players as $player){
+                    if($allPlayer->id == $player->id){
+                        $allPlayer->is_checked = 1;
+                        $allPlayer->player_number = $player->pivot->player_number;
+                        $addDefaultValues = false;
+                        break;
+                    }
+                }
+                if($addDefaultValues){
+                    $allPlayer->is_checked = 0;
+                    $allPlayer->player_number = null;
+                }
+            }
+            unset( $tournament->players);
+        }
+
+        return view('tournament.tournament_detail',compact('tournament','$allPlayers'));
     }
 
 
@@ -89,8 +108,6 @@ class TournamentController extends Controller
             }
             unset( $tournament->players);
         }
-        Log::info($allPlayers);
-
         return view('tournament.tournament_edit',compact('tournament','seasons','allPlayers'));
     }
 
