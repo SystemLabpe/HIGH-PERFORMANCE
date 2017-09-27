@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: josue
- * Date: 20/09/2017
- * Time: 11:46 PM
+ * Date: 27/09/2017
+ * Time: 12:35 PM
  */
 
 namespace App\Http\Controllers;
@@ -11,17 +11,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Tournament;
-use App\Season;
-use App\Player;
+use App\Match;
+
 
 use Log;
 
-class TournamentController extends Controller
+class MatchController extends Controller
 {
     public function index()
     {
-        $tournaments = Tournament::with('season')->get();
+        $matchs = Match::with('season')->get();
         return view('tournament.tournament_list', compact('tournaments'));
     }
 
