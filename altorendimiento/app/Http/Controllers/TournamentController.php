@@ -82,7 +82,6 @@ class TournamentController extends Controller
         $tournament->date_init = $request->date_init;
         $tournament->date_end = $request->date_end;
         $tournament->season_id = $request->season_id;
-        $tournament->player_number = '10';
         $tournament->save();
 
         if(count($request->allPlayers)>0){
