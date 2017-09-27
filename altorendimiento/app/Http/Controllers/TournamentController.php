@@ -60,25 +60,21 @@ class TournamentController extends Controller
         $tournament = Tournament::with('season')->find($id);
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
 
+        $returnPlayers = [];
         if(count($allPlayers)>0){
             foreach ($allPlayers as $allPlayer){
-                $addDefaultValues = true;
                 foreach ($tournament->players as $player){
                     if($allPlayer->id == $player->id){
-                        $allPlayer->is_checked = 1;
                         $allPlayer->player_number = $player->pivot->player_number;
-                        $addDefaultValues = false;
+                        array_push($returnPlayers,$allPlayer);
                         break;
                     }
                 }
-                if($addDefaultValues){
-                    $allPlayer->is_checked = 0;
-                    $allPlayer->player_number = null;
-                }
             }
             unset( $tournament->players);
+            $allPlayers = $returnPlayers;
         }
-
+        Log::info($allPlayers);
         return view('tournament.tournament_detail',compact('tournament','allPlayers'));
     }
 
