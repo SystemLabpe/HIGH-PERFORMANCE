@@ -38,6 +38,7 @@ class TournamentController extends Controller
 
     public function store(Request $request)
     {
+        Log::info($request->allplayers);
         $tournament = new Tournament();
         $tournament->name = $request->name;
         $tournament->date_init = $request->date_init;

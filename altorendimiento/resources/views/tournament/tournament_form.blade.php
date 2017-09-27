@@ -17,7 +17,7 @@
     {!! Form::label('date_end', 'Fecha de Termino') !!}
     {!! Form::date('date_end', null, array('class' => 'form-control')) !!}
 </div>
-
+{{count($tournament->players)}}
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
