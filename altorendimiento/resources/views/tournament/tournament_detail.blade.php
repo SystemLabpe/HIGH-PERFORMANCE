@@ -22,7 +22,6 @@
         <tr>
         	{!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
 
-
             <td>{{ $player->name }}</td>
 
 			<td>{{ $player->player_number }}</td>

@@ -1,16 +1,16 @@
 @extends('layouts.dashboard')
-@section('page_heading','Temporadas')
+@section('page_heading','Equipos Rivales')
 @section('section')
 <div class="col-md-12">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td>Temporada</td>
-                <td><a class="btn btn-small btn-warning" href="{{ URL::to('seasons/create') }}">Crear</a></td>
+                <td>Equipo</td>
+                <td><a class="btn btn-small btn-warning" href="{{ URL::to('rival_teams/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>
-        @foreach($seasons as $key => $value)
+        @foreach($rival_teams as $key => $value)
             <tr>
                 <td>{{ $value->name }}</td>
 
@@ -21,12 +21,12 @@
                     <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                     <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('seasons/' . $value->id) }}">Detalle</a>
+                    <a class="btn btn-small btn-success" href="{{ URL::to('rival_teams/' . $value->id) }}">Detalle</a>
 
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('seasons/' . $value->id . '/edit') }}">Editar</a>
+                    <a class="btn btn-small btn-info" href="{{ URL::to('rival_teams/' . $value->id . '/edit') }}">Editar</a>
 
-                    {!! Form::open(['route' => ['seasons.destroy', $value->id], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['rival_teams.destroy', $value->id], 'method' => 'DELETE']) !!}
                         <button class="btn btn-link">
                             Borrar
                         </button>
