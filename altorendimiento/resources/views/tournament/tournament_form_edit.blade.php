@@ -33,7 +33,7 @@
         	{!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
 
 
-            <td>{{ $player }}</td>
+            <td>{{ $player->name }}</td>
 
 			<td>{!! Form::number('allPlayers['.$key.'][player_number]', $player->player_number, array('class' => 'form-control')) !!}</td>
 
