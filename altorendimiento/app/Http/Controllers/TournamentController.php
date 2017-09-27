@@ -28,19 +28,13 @@ class TournamentController extends Controller
 
     public function create()
     {
-        $tournament = new Tournament();
-        $tournament->players = [];
-
         $seasons = Season::orderBy('updated_at')->get();
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
-        return view('tournament.tournament_add',compact('seasons','allPlayers','tournament'));
+        return view('tournament.tournament_add',compact('seasons','allPlayers'));
     }
 
     public function store(Request $request)
     {
-        Log::info($request);
-        $var = (array)($request->allPlayers);
-        Log::info($var);
         $tournament = new Tournament();
         $tournament->name = $request->name;
         $tournament->date_init = $request->date_init;
@@ -58,7 +52,6 @@ class TournamentController extends Controller
             }
             $tournament->players()->sync($pivot);
         }
-
         return redirect()->route('tournaments.index');
     }
 
