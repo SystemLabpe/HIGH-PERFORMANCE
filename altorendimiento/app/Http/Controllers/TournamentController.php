@@ -16,6 +16,7 @@ use App\Season;
 use App\Player;
 
 use Log;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class TournamentController extends Controller
 {
@@ -66,6 +67,8 @@ class TournamentController extends Controller
     public function edit($id)
     {
         $tournament = Tournament::with(['players','season'])->find($id);
+        $tournament->aa = new Object();
+        $tournament->aa->bb=9;
         Log::info($tournament);
 
         $seasons = Season::orderBy('updated_at')->get();
