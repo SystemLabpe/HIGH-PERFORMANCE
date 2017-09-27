@@ -79,7 +79,7 @@ class TournamentController extends Controller
             unset( $tournament->players);
         }
 
-        return view('tournament.tournament_detail',compact('tournament','$allPlayers'));
+        return view('tournament.tournament_detail',compact('tournament','allPlayers'));
     }
 
 
