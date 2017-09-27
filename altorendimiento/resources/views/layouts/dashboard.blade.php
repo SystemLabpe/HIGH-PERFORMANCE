@@ -268,6 +268,18 @@
                             <a href="{{ url ('tournaments') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Torneos</a>
                         </li>
 
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('stadiums') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Estadios </a>
+                        </li>
+
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('rival_teams') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Rivales</a>
+                        </li>
+
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('players') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Partidos</a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
