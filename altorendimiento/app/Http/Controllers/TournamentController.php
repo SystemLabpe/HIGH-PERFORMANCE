@@ -67,10 +67,29 @@ class TournamentController extends Controller
     public function edit($id)
     {
         $tournament = Tournament::with(['players','season'])->find($id);
-        Log::info($tournament);
 
         $seasons = Season::orderBy('updated_at')->get();
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
+
+        if(count($allPlayers)>0){
+            foreach ($allPlayers as $allPlayer){
+                $addDefaultValues = true;
+                foreach ($tournament->players as $player){
+                    if($allPlayer->id == $player->id){
+                        $allPlayer->is_checked = 1;
+                        $allPlayer->player_number = $player->pivot->player_number;
+                        $addDefaultValues = false;
+                        break;
+                    }
+                }
+                if($addDefaultValues){
+                    $allPlayer->is_checked = 0;
+                    $allPlayer->player_number = null;
+                }
+            }
+            unset( $tournament->players);
+        }
+        Log::info($allPlayers);
 
         return view('tournament.tournament_edit',compact('tournament','seasons','allPlayers'));
     }
