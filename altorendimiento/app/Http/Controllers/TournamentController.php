@@ -74,7 +74,6 @@ class TournamentController extends Controller
             unset( $tournament->players);
             $allPlayers = $returnPlayers;
         }
-        Log::info($allPlayers);
         return view('tournament.tournament_detail',compact('tournament','allPlayers'));
     }
 

@@ -181,10 +181,147 @@ CREATE TABLE IF NOT EXISTS `highperformancedb`.`tournament_player` (
     FOREIGN KEY (`player_id`)
     REFERENCES `highperformancedb`.`players` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `highperformancedb`.`rival_teams`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `highperformancedb`.`rival_teams` ;
+
+CREATE TABLE IF NOT EXISTS `highperformancedb`.`rival_teams` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NOT NULL,
+  `picture` VARCHAR(200) NULL DEFAULT NULL,
+  `club_id` INT(11) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `club_rivtea_idx` (`club_id` ASC),
+  CONSTRAINT `club_rivtea_fk`
+    FOREIGN KEY (`club_id`)
+    REFERENCES `highperformancedb`.`clubs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `highperformancedb`.`stadiums`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `highperformancedb`.`stadiums` ;
+
+CREATE TABLE IF NOT EXISTS `highperformancedb`.`stadiums` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NOT NULL,
+  `club_id` INT(11) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `club_stadium_idx` (`club_id` ASC),
+  CONSTRAINT `club_stadium_fk`
+    FOREIGN KEY (`club_id`)
+    REFERENCES `highperformancedb`.`clubs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `highperformancedb`.`matchs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `highperformancedb`.`matchs` ;
+
+CREATE TABLE IF NOT EXISTS `highperformancedb`.`matchs` (
+  `id` INT(11) NOT NULL,
+  `tournament_id` INT(11) NOT NULL,
+  `rival_team_id` INT(11) NOT NULL,
+  `match_date` DATE NULL DEFAULT NULL,
+  `is_local` CHAR(1) NOT NULL,
+  `local_store` VARCHAR(200) NOT NULL,
+  `visitor_score` VARCHAR(200) NOT NULL,
+  `stadium_id` INT(11) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`,`tournament_id`, `rival_team_id`),
+  INDEX `tour_match_idx` (`tournament_id` ASC),
+  INDEX `rivtea_match_idx` (`rival_team_id` ASC),
+  INDEX `stadium_match_idx` (`stadium_id` ASC),
+  CONSTRAINT `tour_match_fk`
+    FOREIGN KEY (`tournament_id`)
+    REFERENCES `highperformancedb`.`tournaments` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `rivtea_match_fk`
+    FOREIGN KEY (`rival_team_id`)
+    REFERENCES `highperformancedb`.`rival_teams` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `stadium_match_fk`
+    FOREIGN KEY (`stadium_id`)
+    REFERENCES `highperformancedb`.`stadiums` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `highperformancedb`.`player_match`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `highperformancedb`.`player_match` ;
+
+CREATE TABLE IF NOT EXISTS `highperformancedb`.`player_match` (
+  `player_id` INT(11) NOT NULL,
+  `match_id` INT(11) NOT NULL,
+  `match_tournament_id` INT(11) NOT NULL,
+  `match_rival_team_id` INT(11) NOT NULL,
+  
+  `good_pass` INT(11) NULL,
+  `bad_pass` INT(11) NULL,
+  `short_pass` INT(11) NULL,
+  `medium_pass` INT(11) NULL,
+  `long_pass` INT(11) NULL,
+  `internal_edge` INT(11) NULL,
+  `external_edge` INT(11) NULL,
+  `instep` INT(11) NULL,
+  `taco` INT(11) NULL,
+  `tigh` INT(11) NULL,
+  `chest` INT(11) NULL,
+  `head` INT(11) NULL,
+
+  PRIMARY KEY (`player_id`,`match_id`,`match_tournament_id`, `match_rival_team_id`),
+  INDEX `player_playmatc_idx` (`player_id` ASC),
+  INDEX `match_playmatc_idx` (`match_id` ASC),
+  INDEX `matchtour_playmatc_idx` (`match_tournament_id` ASC),
+  INDEX `matchrivt_playmatc_idx` (`match_rival_team_id` ASC),
+  CONSTRAINT `player_playmatc_fk`
+    FOREIGN KEY (`player_id`)
+    REFERENCES `highperformancedb`.`players` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `match_playmatc_fk`
+    FOREIGN KEY (`match_id`)
+    REFERENCES `highperformancedb`.`matchs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `matchtour_playmatc_fk`
+    FOREIGN KEY (`match_tournament_id`)
+    REFERENCES `highperformancedb`.`matchs` (`tournament_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `matchrivt_playmatc_fk`
+    FOREIGN KEY (`match_rival_team_id`)
+    REFERENCES `highperformancedb`.`matchs` (`rival_team_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 COMMIT;

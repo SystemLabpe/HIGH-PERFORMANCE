@@ -19,10 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::resource('seasons','SeasonController');
 
 Route::resource('players','PlayerController');
 
 Route::resource('tournaments','TournamentController');
+
+Route::resource('rival_teams','Rival_TeamController');
+
+Route::resource('stadiums','StadiumController');
+
+Route::resource('matchs','MatchController');
 
