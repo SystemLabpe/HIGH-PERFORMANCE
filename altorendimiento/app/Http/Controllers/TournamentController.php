@@ -67,19 +67,9 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::with(['players','season'])->find($id);
         Log::info($tournament);
-        if(count($tournament->players)>0){
-            $players_id = [];
-            foreach ($tournament->players as $player){
-                array_push($players_id,$player->id);
-            }
-            $tournament->players = $players_id;
-//            unset( $tournament->players);
-        }
-
-
-        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
 
         $seasons = Season::orderBy('updated_at')->get();
+        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
 
         return view('tournament.tournament_edit',compact('tournament','seasons','allPlayers'));
     }
@@ -95,9 +85,9 @@ class TournamentController extends Controller
         $tournament->player_number = '10';
         $tournament->save();
 
-        if(count($request->allplayers)>0){
+        if(count($request->allPlayers)>0){
             $pivot = [];
-            foreach ($request->allplayers as $player){
+            foreach ($request->allPlayers as $player){
                 $player = (object)$player;
                 if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = ['player_number'=>$player->player_number] ;
