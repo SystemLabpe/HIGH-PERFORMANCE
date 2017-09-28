@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 @section('page_heading','Jugadores')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-6 col-md-offset-3">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td>Jugador</td>
-                <td><a class="btn btn-small btn-warning" href="{{ URL::to('players/create') }}">Crear</a></td>
+                <td class="col-md-7">Jugador</td>
+                <td class="col-md-5"><a class="btn btn-small btn-warning" href="{{ URL::to('players/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>

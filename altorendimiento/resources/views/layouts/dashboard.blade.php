@@ -253,7 +253,7 @@
                             </div>
                         </li> -->
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url ('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>

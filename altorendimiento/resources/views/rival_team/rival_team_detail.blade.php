@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
 @section('page_heading','Equipos Rivales')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-6 col-md-offset-3">
     <p>
-        <strong>Equipo:</strong> {{ $rival_team->name }}<br>
+        <h2>Equipo: {{ $rival_team->name }}</h2>
     </p>
 </div>
 @stop

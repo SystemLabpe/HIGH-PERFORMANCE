@@ -1,14 +1,16 @@
 @extends('layouts.dashboard')
 @section('page_heading','Equipos Rivales')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-8 col-md-offset-2">
     <h2>Crear Equipo Rival</h2>
 
-    {!! Form::open(['route' => 'rival_teams.store']) !!}
+    {!! Form::open(['route' => 'rival_teams.store', 'class' => 'form-horizontal']) !!}
 
         @include('rival_team.rival_team_form')
 
-    {!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}
+    	<div class="col-md-12 text-center">
+    		{!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}    	
+        </div>
 
     {!! Form::close() !!}
 </div>

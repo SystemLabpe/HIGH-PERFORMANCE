@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 @section('page_heading','Temporadas')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-6 col-md-offset-3">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td>Temporada</td>
-                <td><a class="btn btn-small btn-warning" href="{{ URL::to('seasons/create') }}">Crear</a></td>
+                <td class="col-md-7">Temporada</td>
+                <td class="col-md-5"><a class="btn btn-small btn-warning" href="{{ URL::to('seasons/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +26,11 @@
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
                     <a class="btn btn-small btn-info" href="{{ URL::to('seasons/' . $value->id . '/edit') }}">Editar</a>
 
-                    {!! Form::open(['route' => ['seasons.destroy', $value->id], 'method' => 'DELETE']) !!}
+                    <!-- {!! Form::open(['route' => ['seasons.destroy', $value->id], 'method' => 'DELETE']) !!}
                         <button class="btn btn-link">
                             Borrar
                         </button>
-                    {!! Form::close() !!}
+                    {!! Form::close() !!} -->
 
                 </td>
             </tr>

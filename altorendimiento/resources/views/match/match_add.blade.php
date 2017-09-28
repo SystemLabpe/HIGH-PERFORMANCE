@@ -4,41 +4,68 @@
 <div class="col-md-12">
     <h2>Crear Partido</h2>
 
-    {!! Form::open(['route' => 'matchs.store']) !!}
+    {!! Form::open(['route' => 'matchs.store', 'class' => 'form-horizontal']) !!}
+    	<div class="row">
+    		<div class="col-md-8 col-md-offset-2">
+    			<div class="form-group">
+				    {!!  Form::label('stadium', 'Estadio', ['class' => 'control-label col-md-4']) !!}
+				    <div class="col-md-4">
+				    	{!! Form::select('stadium_id', $stadiums->pluck('name','id'), null, array('class' => 'form-control')) !!}
+				    </div>				    
+				</div>
 
-        <div class="form-group">
-		    {!!  Form::label('stadium', 'Estadio') !!}
-		    {!! Form::select('stadium_id', $stadiums->pluck('name','id') , array('class' => 'form-control')) !!}
-		</div>
+				<div class="form-group">
+				    {!!  Form::label('tournament', 'Torneo', ['class' => 'control-label col-md-4']) !!}
+				    <div class="col-md-4">
+				    	{!! Form::select('tournament_id', $tournaments->pluck('name','id'), null, array('class' => 'form-control')) !!}
+				    </div>				    
+				</div>
 
-		<div class="form-group">
-		    {!!  Form::label('tournament', 'Torneo') !!}
-		    {!! Form::select('tournament_id', $tournaments->pluck('name','id') , array('class' => 'form-control')) !!}
-		</div>
+				<div class="form-group">
+				    {!!  Form::label('rival_team', 'Equipo Rival', ['class' => 'control-label col-md-4']) !!}
+				    <div class="col-md-4">
+				    	{!! Form::select('rival_team_id', $rival_teams->pluck('name','id'), null , array('class' => 'form-control')) !!}
+				    </div>				    
+				</div>
 
-		<div class="form-group">
-		    {!!  Form::label('rival_team', 'Equipo Rival') !!}
-		    {!! Form::select('rival_team_id', $rival_teams->pluck('name','id') , array('class' => 'form-control')) !!}
-		</div>
+				<div class="form-group">
+				    {!! Form::label('match_date', 'Fecha de Partido', ['class' => 'control-label col-md-4']) !!}
+				    <div class="col-md-4">
+				    	{!! Form::date('match_date', null, array('class' => 'form-control')) !!}
+				    </div>				    
+				</div>
 
-		<div class="form-group">
-		    {!! Form::label('match_date', 'Fecha de Partido') !!}
-		    {!! Form::date('match_date', null, array('class' => 'form-control')) !!}
-		</div>
+				<div class="form-group">
+					<div class="col-md-4 col-md-offset-4">
+				    	<div class="radio">
+							<label>
+					    		{{ Form::radio('is_local', '1') }}Local
+					    	</label>
+					    </div>
+					    <div class="radio">
+							<label>
+								{{ Form::radio('is_local', '0') }} Visitante
+							</label>
+						</div>
+				    </div>
+				</div>
 
-		<div class="form-group">
-		    {{ Form::radio('is_local', '1') }} Local <br> {{ Form::radio('is_local', '0') }} Visitante
-		</div>
+				<div class="form-group">
+				    {!! Form::label('local_score', 'Goles Local', ['class' => 'control-label col-md-4']) !!}
+				    <div class="col-md-4">
+				    	{!! Form::number('local_score', null , array('class' => 'form-control')) !!}
+				    </div>
+				    
+				</div>
 
-		<div class="form-group">
-		    {!! Form::label('local_score', 'Goles Local') !!}
-		    {!! Form::number('local_score', null , array('class' => 'form-control')) !!}
-		</div>
-
-		<div class="form-group">
-		    {!! Form::label('visitor_score', 'Goles Visitante') !!}
-		    {!! Form::number('visitor_score', null , array('class' => 'form-control')) !!}
-		</div>
+				<div class="form-group">
+				    {!! Form::label('visitor_score', 'Goles Visitante', ['class' => 'control-label col-md-4']) !!}
+				    <div class="col-md-4">
+				    	{!! Form::number('visitor_score', null , array('class' => 'form-control')) !!}	
+				    </div>				    
+				</div>
+		    </div>
+		 </div>
 
 		<h3>Jugadores</h3>
 
@@ -131,7 +158,9 @@
 		    </tbody>
 		</table>
 
-    {!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}
+    	<div class="col-md-12 text-center">
+    		{!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}  <br><br>
+        </div>
 
     {!! Form::close() !!}
 </div>

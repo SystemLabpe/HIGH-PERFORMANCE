@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
 @section('page_heading','Estadios')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-6 col-md-offset-3">
     <p>
-        <strong>Estadio:</strong> {{ $stadium->name }}<br>
+        <h2><strong>Estadio:</strong> {{ $stadium->name }}</h2>
     </p>
 </div>
 @stop

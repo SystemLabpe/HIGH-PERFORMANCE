@@ -1,4 +1,4 @@
-/*!
+!
  * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -8938,4 +8938,11 @@ canvas.round {
         border-left-width: 0;
     }
 }
-/*# sourceMappingURL=styles.css.map */
+
+/* CRUD */
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/*# sourceMappingURL=styles.css.map 

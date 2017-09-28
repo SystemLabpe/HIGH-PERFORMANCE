@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('page_heading','Torneos')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-6 col-md-offset-3">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td>Torneo</td>
-                <td>Temporada</td>
-                <td><a class="btn btn-small btn-warning" href="{{ URL::to('tournaments/create') }}">Crear</a></td>
+                <td class="col-md-4">Torneo</td>
+                <td class="col-md-4">Temporada</td>
+                <td class="col-md-4"><a class="btn btn-small btn-warning" href="{{ URL::to('tournaments/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>

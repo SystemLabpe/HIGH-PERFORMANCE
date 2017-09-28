@@ -1,15 +1,15 @@
 @extends('layouts.dashboard')
 @section('page_heading','Partidos')
 @section('section')
-<div class="col-md-12">
+<div class="col-md-10 col-md-offset-1">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td>Equipo Rival</td>
-                <td>Torneo</td>
-                <td>Goles Local</td>
-                <td>Goles Visitante</td>
-                <td><a class="btn btn-small btn-warning" href="{{ URL::to('matchs/create') }}">Crear</a></td>
+                <td class="col-md-4">Equipo Rival</td>
+                <td class="col-md-2">Torneo</td>
+                <td class="col-md-1">Goles Local</td>
+                <td class="col-md-1">Goles Visitante</td>
+                <td class="col-md-2"><a class="btn btn-small btn-warning" href="{{ URL::to('matchs/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>
