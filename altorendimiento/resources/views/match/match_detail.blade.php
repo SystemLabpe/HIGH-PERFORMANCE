@@ -2,14 +2,15 @@
 @section('page_heading','Partidos')
 @section('section')
 <div class="col-md-12">
+
     <p> 
-        <strong>Estadio:</strong> {{ $match->stadium->name }}  <br>
-        <strong>Torneo:</strong> {{ $match->tournament->name }} <br>
-        <strong>Equipo Rival:</strong> {{ $match->rival_team->name }} <br>
-        <strong>Fecha de Partido:</strong> {{ $match->match_date }} <br>
-        <strong>Local:</strong>  {{ $match->is_local == 1 ? 'Local' : 'Visitante' }} <br>
-        <strong>Goles Local:</strong> {{ $match->is_local }} <br>
-        <strong>Goles Visitante:</strong> {{ $match->is_local }} <br>
+        <h2><strong>Equipo Rival:</strong> {{ $match->rival_team->name }} </h2>
+        <h4><strong>Estadio:</strong> {{ $match->stadium->name }} </h4>
+        <h4><strong>Torneo:</strong> {{ $match->tournament->name }} </h4>
+        <h4><strong>Fecha de Partido:</strong> {{ $match->match_date }} </h4>
+        <h4><strong>Local:</strong>  {{ $match->is_local == 1 ? 'Local' : 'Visitante' }} </h4>
+        <h4><strong>Goles Local:</strong> {{ $match->is_local }} </h4>
+        <h4><strong>Goles Visitante:</strong> {{ $match->is_local }} </h4>
         
     </p>
     <table class="table table-striped table-bordered">
@@ -31,64 +32,64 @@
                 <td rowspan="2">{{ $player->name }}</td>
 
                 <td>
-                    Pases buenos
-                    {{ $player->good_pass }}
+                    <strong>Pases buenos: </strong>
+                    {{ $player->good_pass ? $player->good_pass : '--'}}
                 </td>
 
                 <td>
-                    Pases malos
-                    {{ $player->bad_pass }}
+                    <strong>Pases malos: </strong>
+                    {{ $player->bad_pass ? $player->bad_pass : '--'}}
                 </td>
 
                 <td>
-                    Pases cortos
-                    {{ $player->short_pass }}
+                    <strong>Pases cortos: </strong>
+                    {{ $player->short_pass ? $player->short_pass : '--'}}
                 </td>
 
                 <td>
-                    Pases medios
-                    {{ $player->medium_pass }}
+                    <strong>Pases medios: </strong>
+                    {{ $player->medium_pass ? $player->medium_pass : '--'}}
                 </td>
 
                 <td>
-                    Pases largos
-                    {{ $player->long_pass }}
+                    <strong>Pases largos: </strong>
+                    {{ $player->long_pass ? $player->long_pass : '--'}}
                 </td>
 
                 <td>
-                    Borde interno
-                    {{ $player->internal_edge }}
+                    <strong>Borde interno: </strong>
+                    {{ $player->internal_edge ? $player->internal_edge : '--'}}
                 </td>
             </tr>
             <tr>
                 <td>
-                    Borde externo
-                    {{ $player->external_edge }}
+                    <strong>Borde externo: </strong>
+                    {{ $player->external_edge ? $player->external_edge : '--'}}
                 </td>
 
                 <td>
-                    Empeine
-                    {{ $player->instep }}
+                    <strong>Empeine: </strong>
+                    {{ $player->instep ? $player->instep : '--'}}
                 </td>
 
                 <td>
-                    Taco
-                    {{ $player->taco }}
+                    <strong>Taco: </strong>
+                    {{ $player->taco ? $player->taco : '--'}}
                 </td>
 
                 <td>
-                    Muslo
-                    {{ $player->tigh }}
+                    <strong>Muslo: </strong>
+                    {{ $player->tigh ? $player->tigh : '--'}}
                 </td>
 
                 <td>
-                    Pecho
-                    {{ $player->chest }}
+                    <strong>Pecho: </strong>
+                    {{ $player->chest ? $player->chest : '--'}}
                 </td>
 
                 <td>
-                    Cabeza
-                    {{ $player->head }}
+                    <strong>Cabeza: </strong>
+                    {{ $player->head ? $player->head : '--'}}
                 </td>
             </tr>
         @endforeach
