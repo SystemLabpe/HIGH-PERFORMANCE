@@ -91,7 +91,18 @@ class MatchController extends Controller
             foreach ($allPlayers as $allPlayer){
                 foreach ($match->players as $player){
                     if($allPlayer->id == $player->id){
-                        $allPlayer->player_number = $player->pivot->player_number;
+                        $allPlayer->good_pass = $player->pivot->good_pass;
+                        $allPlayer->bad_pass = $player->pivot->bad_pass;
+                        $allPlayer->short_pass = $player->pivot->short_pass;
+                        $allPlayer->medium_pass = $player->pivot->medium_pass;
+                        $allPlayer->long_pass = $player->pivot->long_pass;
+                        $allPlayer->internal_edge = $player->pivot->internal_edge;
+                        $allPlayer->external_edge = $player->pivot->external_edge;
+                        $allPlayer->instep = $player->pivot->instep;
+                        $allPlayer->taco = $player->pivot->taco;
+                        $allPlayer->tigh = $player->pivot->tigh;
+                        $allPlayer->chest = $player->pivot->chest;
+                        $allPlayer->head = $player->pivot->head;
                         array_push($returnPlayers,$allPlayer);
                         break;
                     }
