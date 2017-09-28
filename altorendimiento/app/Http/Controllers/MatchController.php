@@ -58,6 +58,8 @@ class MatchController extends Controller
                 $player = (object)$player;
                 if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = [
+                        'match_tournament_id' => $request->tournament_id,
+                        'match_rival_team_id' => $request->rival_team_id,
                         'good_pass'=>$player->good_pass,
                         'bad_pass'=>$player->bad_pass,
                         'short_pass'=>$player->short_pass,
@@ -117,7 +119,18 @@ class MatchController extends Controller
                 foreach ($match->players as $player){
                     if($allPlayer->id == $player->id){
                         $allPlayer->is_checked = 1;
-                        $allPlayer->player_number = $player->pivot->player_number;
+                        $allPlayer->good_pass = $player->pivot->good_pass;
+                        $allPlayer->bad_pass = $player->pivot->bad_pass;
+                        $allPlayer->short_pass = $player->pivot->short_pass;
+                        $allPlayer->medium_pass = $player->pivot->medium_pass;
+                        $allPlayer->long_pass = $player->pivot->long_pass;
+                        $allPlayer->internal_edge = $player->pivot->internal_edge;
+                        $allPlayer->external_edge = $player->pivot->external_edge;
+                        $allPlayer->instep = $player->pivot->instep;
+                        $allPlayer->taco = $player->pivot->taco;
+                        $allPlayer->tigh = $player->pivot->tigh;
+                        $allPlayer->chest = $player->pivot->chest;
+                        $allPlayer->head = $player->pivot->head;
                         $addDefaultValues = false;
                         break;
                     }
@@ -125,6 +138,18 @@ class MatchController extends Controller
                 if($addDefaultValues){
                     $allPlayer->is_checked = 0;
                     $allPlayer->player_number = null;
+                    $allPlayer->good_pass = null;
+                    $allPlayer->bad_pass = null;
+                    $allPlayer->short_pass = null;
+                    $allPlayer->medium_pass = null;
+                    $allPlayer->long_pass = null;
+                    $allPlayer->internal_edge = null;
+                    $allPlayer->external_edge = null;
+                    $allPlayer->instep = null;
+                    $allPlayer->taco = null;
+                    $allPlayer->tigh = null;
+                    $allPlayer->chest = null;
+                    $allPlayer->head = null;
                 }
             }
             unset( $match->players);
@@ -135,6 +160,7 @@ class MatchController extends Controller
 
     public function update(Request $request, $id)
     {
+        Log::info($request);
         $match = Match::find($id);
         $match->match_date = $request->match_date;
         $match->is_local = $request->is_local;
@@ -145,7 +171,7 @@ class MatchController extends Controller
         $match->stadium_id = $request->stadium_id;
 
 
-        $match->save();
+        // $match->save();
 
         if(count($request->allPlayers)>0){
             $pivot = [];
@@ -153,6 +179,8 @@ class MatchController extends Controller
                 $player = (object)$player;
                 if(array_key_exists('is_checked',$player)){
                     $pivot[$player->id] = [
+                        'match_tournament_id' => $request->tournament_id,
+                        'match_rival_team_id' => $request->rival_team_id,
                         'good_pass'=>$player->good_pass,
                         'bad_pass'=>$player->bad_pass,
                         'short_pass'=>$player->short_pass,
@@ -170,6 +198,8 @@ class MatchController extends Controller
             }
             $match->players()->sync($pivot);
         }
+
+        $match->save();
         return redirect()->route('matchs.index');
     }
 

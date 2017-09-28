@@ -39,8 +39,7 @@ class Match extends Model
 
     public function players(){
         return $this->belongsToMany('App\Player','player_match','match_id','player_id')
-            ->withPivot('good_pass','bad_pass','short_pass','medium_pass','long_pass','internal_edge','external_edge','instep','taco','tigh','chest','head')
-            ->withTimestamps();
+            ->withPivot('good_pass','bad_pass','short_pass','medium_pass','long_pass','internal_edge','external_edge','instep','taco','tigh','chest','head');
     }
 
 

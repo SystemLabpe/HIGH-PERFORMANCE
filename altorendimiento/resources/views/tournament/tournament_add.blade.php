@@ -25,6 +25,9 @@
 		    {!! Form::label('date_end', 'Fecha de Termino') !!}
 		    {!! Form::date('date_end', null, array('class' => 'form-control')) !!}
 		</div>
+
+		<h3>Jugadores</h3>
+
 		<table class="table table-striped table-bordered">
 		    <thead>
 		        <tr>

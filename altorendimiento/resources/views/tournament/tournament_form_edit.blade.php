@@ -1,5 +1,5 @@
 <div class="form-group">
-    {!!  Form::label('name', 'Torneo') !!}
+    {!!  Form::label('name', 'Torneo bbb') !!}
     {!! Form::text('name', null , array('class' => 'form-control')) !!}
 </div>
 
