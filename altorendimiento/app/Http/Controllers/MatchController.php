@@ -24,7 +24,7 @@ class MatchController extends Controller
 {
     public function index()
     {
-        $matchs = Match::with(['tournament','rival_team','stadium'])->get();
+        $matchs = Match::with(['tournament','rival_team','stadium'])->paginate(8);
         return view('match.match_list', compact('matchs'));
     }
 

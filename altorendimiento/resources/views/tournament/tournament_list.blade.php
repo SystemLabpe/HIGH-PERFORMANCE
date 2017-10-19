@@ -33,5 +33,7 @@
         @endforeach
         </tbody>
     </table>
+
+    {!! $tournaments->links() !!}
 </div>
 @stop

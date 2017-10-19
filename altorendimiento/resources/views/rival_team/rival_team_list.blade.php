@@ -37,6 +37,8 @@
         @endforeach
         </tbody>
     </table>
+
+    {!! $rival_teams->links() !!}
 </div>
 @stop
 

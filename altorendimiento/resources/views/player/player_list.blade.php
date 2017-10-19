@@ -31,6 +31,7 @@
         @endforeach
         </tbody>
     </table>
-
+    
+    {!! $players->links() !!}
 </div>
 @stop

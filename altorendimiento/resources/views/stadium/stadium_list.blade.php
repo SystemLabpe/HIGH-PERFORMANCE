@@ -37,6 +37,8 @@
         @endforeach
         </tbody>
     </table>
+
+    {!! $stadiums->links() !!}
 </div>
 @stop
 

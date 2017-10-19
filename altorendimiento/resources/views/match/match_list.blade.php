@@ -38,5 +38,7 @@
         </tbody>
     </table>
 
+    {!! $matchs->links() !!}
+
 </div>
 @stop
