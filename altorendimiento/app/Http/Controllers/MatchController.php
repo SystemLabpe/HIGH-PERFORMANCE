@@ -211,7 +211,7 @@ class MatchController extends Controller
         }
 
         $match->save();
-        return redirect()->route('matchs.index');
+        return redirect()->route('matchs.index')->with('info', 'Partido editado satisfactoriamente');
     }
 
 

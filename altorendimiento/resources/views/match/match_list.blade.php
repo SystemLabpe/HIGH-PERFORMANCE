@@ -2,6 +2,7 @@
 @section('page_heading','Partidos')
 @section('section')
 <div class="col-md-10 col-md-offset-1">
+    @include('layouts.info')
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
