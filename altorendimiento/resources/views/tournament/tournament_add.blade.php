@@ -9,28 +9,28 @@
         <div class="form-group">
 		    {!! Form::label('name', 'Torneo', ['class' => 'control-label col-md-4']) !!}
 		    <div class="col-md-6">
-			    {!! Form::text('name', null , array('class' => 'form-control')) !!}
+			    {!! Form::text('name', null , array('class' => 'form-control', 'required' => '')) !!}
 			</div>
 		</div>
 
 		<div class="form-group">
 			{!! Form::label('season', 'Temporada', ['class' => 'control-label col-md-4']) !!}
 			<div class="col-md-4">
-				{!! Form::select('season_id',$seasons->pluck('name','id'), null, array('class' => 'form-control')) !!}
+				{!! Form::select('season_id',$seasons->pluck('name','id'), null, array('class' => 'form-control', 'placeholder' => 'Seleccione Temporada', 'required' => '')) !!}
 			</div>
 		</div>
 
 		<div class="form-group">
 		    {!! Form::label('date_init', 'Fecha de Inicio', ['class' => 'control-label col-md-4']) !!}
 		    <div class="col-md-4">
-			    {!! Form::date('date_init', null, array('class' => 'form-control')) !!}
+			    {!! Form::date('date_init', null, array('class' => 'form-control', 'required' => '')) !!}
 			</div>
 		</div>
 
 		<div class="form-group">
 		    {!! Form::label('date_end', 'Fecha de Termino', ['class' => 'control-label col-md-4']) !!}
 		    <div class="col-md-4">
-			    {!! Form::date('date_end', null, array('class' => 'form-control')) !!}
+			    {!! Form::date('date_end', null, array('class' => 'form-control', 'required' => '')) !!}
 			</div>
 		</div>
 

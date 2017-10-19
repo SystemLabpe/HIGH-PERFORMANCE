@@ -3,16 +3,20 @@
 @section('section')
 <div class="col-md-12">
 
-    <p> 
-        <h2><strong>Equipo Rival:</strong> {{ $match->rival_team->name }} </h2>
-        <h4><strong>Estadio:</strong> {{ $match->stadium->name }} </h4>
-        <h4><strong>Torneo:</strong> {{ $match->tournament->name }} </h4>
-        <h4><strong>Fecha de Partido:</strong> {{ $match->match_date }} </h4>
-        <h4><strong>Local:</strong>  {{ $match->is_local == 1 ? 'Local' : 'Visitante' }} </h4>
-        <h4><strong>Goles Local:</strong> {{ $match->is_local }} </h4>
-        <h4><strong>Goles Visitante:</strong> {{ $match->is_local }} </h4>
-        
-    </p>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <p> 
+                <h2>Equipo Rival: {{ $match->rival_team->name }} </h2>
+                <h4><strong>Estadio:</strong> {{ $match->stadium->name }} </h4>
+                <h4><strong>Torneo:</strong> {{ $match->tournament->name }} </h4>
+                <h4><strong>Fecha de Partido:</strong> {{ $match->match_date }} </h4>
+                <h4><strong>Local:</strong>  {{ $match->is_local == 1 ? 'Local' : 'Visitante' }} </h4>
+                <h4><strong>Goles Local:</strong> {{ $match->is_local }} </h4>
+                <h4><strong>Goles Visitante:</strong> {{ $match->is_local }} </h4>
+                
+            </p>
+        </div>
+    </div>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>

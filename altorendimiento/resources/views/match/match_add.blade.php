@@ -10,21 +10,21 @@
     			<div class="form-group">
 				    {!!  Form::label('stadium', 'Estadio', ['class' => 'control-label col-md-4']) !!}
 				    <div class="col-md-4">
-				    	{!! Form::select('stadium_id', $stadiums->pluck('name','id'), null, array('class' => 'form-control')) !!}
+				    	{!! Form::select('stadium_id', $stadiums->pluck('name','id'), null, array('class' => 'form-control', 'placeholder' => 'Seleccione Estadio', 'required' => '')) !!}
 				    </div>				    
 				</div>
 
 				<div class="form-group">
 				    {!!  Form::label('tournament', 'Torneo', ['class' => 'control-label col-md-4']) !!}
 				    <div class="col-md-4">
-				    	{!! Form::select('tournament_id', $tournaments->pluck('name','id'), null, array('class' => 'form-control')) !!}
+				    	{!! Form::select('tournament_id', $tournaments->pluck('name','id'), null, array('class' => 'form-control', 'placeholder' => 'Seleccione Torneo', 'required' => '')) !!}
 				    </div>				    
 				</div>
 
 				<div class="form-group">
 				    {!!  Form::label('rival_team', 'Equipo Rival', ['class' => 'control-label col-md-4']) !!}
 				    <div class="col-md-4">
-				    	{!! Form::select('rival_team_id', $rival_teams->pluck('name','id'), null , array('class' => 'form-control')) !!}
+				    	{!! Form::select('rival_team_id', $rival_teams->pluck('name','id'), null , array('class' => 'form-control', 'placeholder' => 'Seleccione Rival', 'required' => '')) !!}
 				    </div>				    
 				</div>
 
@@ -39,12 +39,12 @@
 					<div class="col-md-4 col-md-offset-4">
 				    	<div class="radio">
 							<label>
-					    		{{ Form::radio('is_local', '1') }}Local
+					    		{{ Form::radio('is_local', '1', false, array('required' => '')) }}Local
 					    	</label>
 					    </div>
 					    <div class="radio">
 							<label>
-								{{ Form::radio('is_local', '0') }} Visitante
+								{{ Form::radio('is_local', '0', false, array('required' => '')) }} Visitante
 							</label>
 						</div>
 				    </div>
