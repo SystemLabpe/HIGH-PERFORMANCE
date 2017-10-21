@@ -3,7 +3,7 @@
 @section('section')
 <div class="col-md-8 col-md-offset-2">
     <h2>Crear Torneo</h2>
-
+	@include('layouts.errors')
     {!! Form::open(['route' => 'tournaments.store', 'class' => 'form-horizontal']) !!}
 
         <div class="form-group">

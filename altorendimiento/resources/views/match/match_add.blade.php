@@ -3,7 +3,7 @@
 @section('section')
 <div class="col-md-12">
     <h2>Crear Partido</h2>
-
+	@include('layouts.errors')
     {!! Form::open(['route' => 'matchs.store', 'class' => 'form-horizontal']) !!}
     	<div class="row">
     		<div class="col-md-8 col-md-offset-2">

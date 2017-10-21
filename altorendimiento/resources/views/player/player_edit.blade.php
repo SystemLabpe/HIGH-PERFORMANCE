@@ -3,6 +3,7 @@
 @section('section')
 <div class="col-md-8 col-md-offset-2">
     <h2>Editar Jugador</h2>
+    @include('layouts.errors')
     {!! Form::model($player, ['route' => ['players.update', $player->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
         @include('player.player_form')

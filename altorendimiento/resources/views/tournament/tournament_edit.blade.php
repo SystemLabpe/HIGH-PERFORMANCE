@@ -3,7 +3,7 @@
 @section('section')
 <div class="col-md-8 col-md-offset-2">
     <h2>Editar Torneo</h2>
-
+    @include('layouts.errors')
     {!! Form::model($tournament, ['route' => ['tournaments.update', $tournament->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
         <div class="form-group">

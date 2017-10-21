@@ -3,7 +3,7 @@
 @section('section')
 <div class="col-md-8 col-md-offset-2">
     <h2>Editar Temporada {{ $season->name }}</h2>
-
+    @include('layouts.errors')
     {!! Form::model($season, ['route' => ['seasons.update', $season->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
         @include('season.season_form')

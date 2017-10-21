@@ -3,7 +3,7 @@
 @section('section')
 <div class="col-md-12">
     <h2>Editar Partido</h2>
-
+	@include('layouts.errors')
     {!! Form::model($match, ['route' => ['matchs.update', $match->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
     	<div class="row">

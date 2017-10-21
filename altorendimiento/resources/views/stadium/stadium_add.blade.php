@@ -3,7 +3,7 @@
 @section('section')
 <div class="col-md-12">
     <h2>Crear Estadio</h2>
-
+    @include('layouts.errors')
     {!! Form::open(['route' => 'stadiums.store', 'class' => 'form-horizontal']) !!}
 
         @include('stadium.stadium_form')
