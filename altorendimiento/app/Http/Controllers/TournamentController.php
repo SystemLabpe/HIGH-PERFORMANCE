@@ -60,7 +60,7 @@ class TournamentController extends Controller
 
             });
         } catch (\Exception $e) {
-            return redirect()->route('tournaments.index')->with('info', 'Ocurrio un error, intentelo de nuevo');
+            return redirect()->route('tournaments.index')->with('error', 'Ocurrio un error, intentelo de nuevo');
         }
         return redirect()->route('tournaments.index')->with('info', 'Torneo creado satisfactoriamente');
     }
@@ -119,27 +119,33 @@ class TournamentController extends Controller
 
     public function update(Request $request, $id)
     {
-//        DB::transaction(function () use($request, $id){
-            $tournament = Tournament::find($id);
-            $tournament->name = $request->name;
-            $tournament->date_init = $request->date_init;
-            $tournament->date_end = $request->date_end;
-            $tournament->season_id = $request->season_id;
-            $tournament->save();
+        try{
+            DB::transaction(function () use($request,$id){
 
-            if(count($request->allPlayers)>0){
-                $pivot = [];
-                foreach ($request->allPlayers as $player){
-                    $player = (object)$player;
-                    if(array_key_exists('is_checked',$player)){
-                        $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+
+                $tournament = Tournament::find($id);
+                $tournament->name = $request->name;
+                $tournament->date_init = $request->date_init;
+                $tournament->date_end = $request->date_end;
+                $tournament->season_id = $request->season_id;
+                $tournament->save();
+
+                if(count($request->allPlayers)>0){
+                    $pivot = [];
+                    foreach ($request->allPlayers as $player){
+                        $player = (object)$player;
+                        if(array_key_exists('is_checked',$player)){
+                            $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+                        }
                     }
+                    $tournament->players()->sync($pivot);
                 }
-                $tournament->players()->sync($pivot);
-            }
-//        });
-//        Log::info($transactionResult);
-        return redirect()->route('tournaments.index')->with('info', 'Torneo editado satisfactoriamente');;
+
+            });
+        } catch (\Exception $e) {
+            return redirect()->route('tournaments.index')->with('error', 'Ocurrio un error, intentelo de nuevo');
+        }
+        return redirect()->route('tournaments.index')->with('info', 'Torneo editado satisfactoriamente');
     }
 
 
