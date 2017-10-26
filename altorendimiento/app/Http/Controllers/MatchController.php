@@ -40,7 +40,6 @@ class MatchController extends Controller
 
     public function store(Request $request)
     {
-        Log::info($request);
         $match = new Match();
         $match->match_date = $request->match_date;
         $match->is_local = $request->is_local;

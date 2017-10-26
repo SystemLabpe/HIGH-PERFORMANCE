@@ -293,6 +293,18 @@ CREATE TABLE IF NOT EXISTS `highperformancedb`.`player_match` (
   `tigh` INT(11) NULL,
   `chest` INT(11) NULL,
   `head` INT(11) NULL,
+  
+  `d_short_distance` INT(11) NULL,
+  `d_medium_distance` INT(11) NULL,
+  `d_long_distance` INT(11) NULL,
+  `i_full_speed` INT(11) NULL,
+  `i_semi_full_speed` INT(11) NULL,
+  `i_half_speed` INT(11) NULL,
+  `i_walk` INT(11) NULL,
+  `e_run` INT(11) NULL,
+  `e_jump` INT(11) NULL,
+  `e_walk` INT(11) NULL,
+  `e_stand` INT(11) NULL,
 
   PRIMARY KEY (`player_id`,`match_id`,`match_tournament_id`, `match_rival_team_id`),
   INDEX `player_playmatc_idx` (`player_id` ASC),
@@ -315,6 +327,74 @@ CREATE TABLE IF NOT EXISTS `highperformancedb`.`player_match` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `matchrivt_playmatc_fk`
+    FOREIGN KEY (`match_rival_team_id`)
+    REFERENCES `highperformancedb`.`matchs` (`rival_team_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `highperformancedb`.`tacticals`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `highperformancedb`.`tacticals` ;
+
+CREATE TABLE IF NOT EXISTS `highperformancedb`.`tacticals` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NOT NULL,
+  `desc` TEXT NULL DEFAULT NULL,
+  `tactical_type` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '1:SYSTEM 2:FIXED',
+  `club_id` INT(11) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `club_tact_idx` (`club_id` ASC),
+  CONSTRAINT `club_tact_fk`
+    FOREIGN KEY (`club_id`)
+    REFERENCES `highperformancedb`.`clubs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `highperformancedb`.`player_match`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `highperformancedb`.`tactical_match` ;
+
+CREATE TABLE IF NOT EXISTS `highperformancedb`.`tactical_match` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tactical_id` INT(11) NOT NULL,
+  `match_id` INT(11) NOT NULL,
+  `match_tournament_id` INT(11) NOT NULL,
+  `match_rival_team_id` INT(11) NOT NULL,
+  `is_own` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0:NO 1:YES',
+  `ended_in_goal` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0:NO 2:YES',
+
+  PRIMARY KEY (`id`,`tactical_id`,`match_id`,`match_tournament_id`, `match_rival_team_id`),
+  INDEX `tactical_tactmatc_idx` (`tactical_id` ASC),
+  INDEX `match_tactmatc_idx` (`match_id` ASC),
+  INDEX `matchtour_tactmatc_idx` (`match_tournament_id` ASC),
+  INDEX `matchrivt_tactmatc_idx` (`match_rival_team_id` ASC),
+  CONSTRAINT `tactical_tactmatc_fk`
+    FOREIGN KEY (`tactical_id`)
+    REFERENCES `highperformancedb`.`tacticals` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `match_tactmatc_fk`
+    FOREIGN KEY (`match_id`)
+    REFERENCES `highperformancedb`.`matchs` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `matchtour_tactmatc_fk`
+    FOREIGN KEY (`match_tournament_id`)
+    REFERENCES `highperformancedb`.`matchs` (`tournament_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `matchrivt_tactmatc_fk`
     FOREIGN KEY (`match_rival_team_id`)
     REFERENCES `highperformancedb`.`matchs` (`rival_team_id`)
     ON DELETE NO ACTION
