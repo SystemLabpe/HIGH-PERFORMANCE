@@ -13,7 +13,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url ('/') }}">
-                    <img src="assets/img/logo.png" class="logo"> Alto Rendimiento
+                    <img src="assets/img/logo.png" class="logo">
                 </a>
             </div>
             <!-- /.navbar-header -->
@@ -259,23 +259,23 @@
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('seasons') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Temporadas</a>
+                            <a href="{{ url ('seasons') }}"><i class="fa fa-database fa-fw"></i> Temporadas</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('players') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Jugadores</a>
+                            <a href="{{ url ('players') }}"><i class="fa fa-bar-chart-o fa-group"></i> Jugadores</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('tournaments') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Torneos</a>
+                            <a href="{{ url ('tournaments') }}"><i class="fa fa-database fa-fw"></i> Torneos</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('stadiums') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Estadios </a>
+                            <a href="{{ url ('stadiums') }}"><i class="fa fa-spinner fa-fw"></i> Estadios </a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('rival_teams') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Rivales</a>
+                            <a href="{{ url ('rival_teams') }}"><i class="fa fa-child fa-fw"></i> Rivales</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
