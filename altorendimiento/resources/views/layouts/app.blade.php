@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Alto Rendimiento
+                        <img src="assets/img/logo.png" class="logo"> Alto Rendimiento
                     </a>
                 </div>
 

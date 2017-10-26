@@ -12,7 +12,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('/') }}">Alto Rendimiento</a>
+                <a class="navbar-brand" href="{{ url ('/') }}">
+                    <img src="assets/img/logo.png" class="logo"> Alto Rendimiento
+                </a>
             </div>
             <!-- /.navbar-header -->
 

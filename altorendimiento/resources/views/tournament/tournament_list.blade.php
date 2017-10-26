@@ -2,6 +2,7 @@
 @section('page_heading','Torneos')
 @section('section')
 <div class="col-md-6 col-md-offset-3">
+    @include('layouts.error')
     @include('layouts.info')
     <table class="table table-striped table-bordered">
         <thead>
