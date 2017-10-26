@@ -71,7 +71,7 @@
 
 		<div class="row">
 		 	<div class="col-md-6 text-right">
-		 		<a class="btn btn-info" href="{{ URL::to('matchs/'.id.'/editTechnicalPhysical') }}">Módulo Técnico y Físico</a>
+		 		<a class="btn btn-info" href="{{ URL::to('matchs/'.$match->id.'/editTechnicalPhysical') }}">Módulo Técnico y Físico</a>
 		 	</div>
 			<div class="col-md-6 text-left">
 		 		<a class="btn btn-success">Módulo Táctico</a>
