@@ -282,6 +282,10 @@
                             <a href="{{ url ('matchs') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Partidos</a>
                         </li>
 
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('tacticals') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Tácticas</a>
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
