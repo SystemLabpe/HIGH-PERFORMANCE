@@ -21,7 +21,7 @@ class Rival_TeamController extends Controller
 
     public function index()
     {
-        $rival_teams = Rival_Team::get();
+        $rival_teams = Rival_Team::paginate(5);
         return view('rival_team.rival_team_list', compact('rival_teams'));
     }
 
@@ -39,7 +39,7 @@ class Rival_TeamController extends Controller
         $rival_team->club_id = Auth::user()->club_id;
         $rival_team->save();
 
-        return redirect()->route('rival_teams.index');
+        return redirect()->route('rival_teams.index')->with('info', 'Equipo rival creado satisfactoriamente');
     }
 
     public function show($id)
@@ -63,7 +63,7 @@ class Rival_TeamController extends Controller
 //        $rival_team->picture = $request->picture;
         $rival_team->club_id = Auth::user()->club_id;
         $rival_team->save();
-        return redirect()->route('rival_teams.index');
+        return redirect()->route('rival_teams.index')->with('info', 'Equipo rival editado satisfactoriamente');;
     }
 
 

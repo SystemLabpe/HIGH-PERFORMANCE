@@ -24,7 +24,7 @@ class MatchController extends Controller
 {
     public function index()
     {
-        $matchs = Match::with(['tournament','rival_team','stadium'])->paginate(8);
+        $matchs = Match::with(['tournament','rival_team','stadium'])->paginate(5);
         return view('match.match_list', compact('matchs'));
     }
 
@@ -77,7 +77,7 @@ class MatchController extends Controller
             }
             $match->players()->sync($pivot);
         }
-        return redirect()->route('matchs.index');
+        return redirect()->route('matchs.index')->with('info', 'Partido creado satisfactoriamente');
     }
 
     public function show($id)

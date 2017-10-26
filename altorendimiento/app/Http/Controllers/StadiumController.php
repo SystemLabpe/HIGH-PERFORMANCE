@@ -20,7 +20,7 @@ class StadiumController extends Controller
 {
     public function index()
     {
-        $stadiums = Stadium::get();
+        $stadiums = Stadium::paginate(5);
         return view('stadium.stadium_list', compact('stadiums'));
     }
 
@@ -37,7 +37,7 @@ class StadiumController extends Controller
         $stadium->club_id = Auth::user()->club_id;
         $stadium->save();
 
-        return redirect()->route('stadiums.index');
+        return redirect()->route('stadiums.index')->with('info', 'Estadio creado satisfactoriamente');
     }
 
     public function show($id)
@@ -60,7 +60,7 @@ class StadiumController extends Controller
         $stadium->name = $request->name;
         $stadium->club_id = Auth::user()->club_id;
         $stadium->save();
-        return redirect()->route('stadiums.index');
+        return redirect()->route('stadiums.index')->with('info', 'Estadio editado satisfactoriamente');
     }
 
 

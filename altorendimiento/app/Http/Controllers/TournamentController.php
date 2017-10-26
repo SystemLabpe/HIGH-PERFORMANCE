@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Tournament;
 use App\Season;
@@ -17,11 +18,12 @@ use App\Player;
 
 use Log;
 
+
 class TournamentController extends Controller
 {
     public function index()
     {
-        $tournaments = Tournament::with('season')->get();
+        $tournaments = Tournament::with('season')->paginate(5);
         return view('tournament.tournament_list', compact('tournaments'));
     }
 
@@ -35,24 +37,25 @@ class TournamentController extends Controller
 
     public function store(Request $request)
     {
-        $tournament = new Tournament();
-        $tournament->name = $request->name;
-        $tournament->date_init = $request->date_init;
-        $tournament->date_end = $request->date_end;
-        $tournament->season_id = $request->season_id;
-        $tournament->save();
 
-        if(count($request->allPlayers)>0){
-            $pivot = [];
-            foreach ($request->allPlayers as $player){
-                $player = (object)$player;
-                if(array_key_exists('is_checked',$player)){
-                    $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+            $tournament = new Tournament();
+            $tournament->name = $request->name;
+            $tournament->date_init = $request->date_init;
+            $tournament->date_end = $request->date_end;
+            $tournament->season_id = $request->season_id;
+            $tournament->save();
+
+            if(count($request->allPlayers)>0){
+                $pivot = [];
+                foreach ($request->allPlayers as $player){
+                    $player = (object)$player;
+                    if(array_key_exists('is_checked',$player)){
+                        $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+                    }
                 }
+                $tournament->players()->sync($pivot);
             }
-            $tournament->players()->sync($pivot);
-        }
-        return redirect()->route('tournaments.index');
+            return redirect()->route('tournaments.index')->with('info', 'Torneo creado satisfactoriamente');
     }
 
     public function show($id)
@@ -109,25 +112,26 @@ class TournamentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $tournament = Tournament::find($id);
-        $tournament->name = $request->name;
-        $tournament->date_init = $request->date_init;
-        $tournament->date_end = $request->date_end;
-        $tournament->season_id = $request->season_id;
-        $tournament->save();
+            $tournament = Tournament::find($id);
+            $tournament->name = $request->name;
+            $tournament->date_init = $request->date_init;
+            $tournament->date_end = $request->date_end;
+            $tournament->season_id = $request->season_id;
+            $tournament->save();
 
-        if(count($request->allPlayers)>0){
-            $pivot = [];
-            foreach ($request->allPlayers as $player){
-                $player = (object)$player;
-                if(array_key_exists('is_checked',$player)){
-                    $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+            if(count($request->allPlayers)>0){
+                $pivot = [];
+                foreach ($request->allPlayers as $player){
+                    $player = (object)$player;
+                    if(array_key_exists('is_checked',$player)){
+                        $pivot[$player->id] = ['player_number'=>$player->player_number] ;
+                    }
                 }
+                $tournament->players()->sync($pivot);
             }
-            $tournament->players()->sync($pivot);
-        }
 
-        return redirect()->route('tournaments.index');
+            return redirect()->route('tournaments.index')->with('info', 'Torneo creado satisfactoriamente');;
+
     }
 
 

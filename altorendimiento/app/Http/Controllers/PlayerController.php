@@ -21,7 +21,7 @@ class PlayerController extends Controller
 
     public function index()
     {
-        $players = Player::get();
+        $players = Player::paginate(5);
         return view('player.player_list', compact('players'));
     }
 
@@ -41,7 +41,7 @@ class PlayerController extends Controller
         $player->club_id = Auth::user()->club_id;
         $player->save();
 
-        return redirect()->route('players.index');
+        return redirect()->route('players.index')->with('info', 'Jugador creado satisfactoriamente');
     }
 
     public function show($id)
@@ -67,7 +67,7 @@ class PlayerController extends Controller
         $player->birth_date = $request->birth_date;
         $player->club_id = Auth::user()->club_id;
         $player->save();
-        return redirect()->route('players.index');
+        return redirect()->route('players.index')->with('info', 'Jugador editado satisfactoriamente');;;
     }
 
 
