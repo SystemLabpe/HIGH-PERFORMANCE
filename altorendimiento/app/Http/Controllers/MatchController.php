@@ -384,42 +384,46 @@ class MatchController extends Controller
 
     public function updateTechnicalPhysical(Request $request, $id)
     {
+        Log::info($id);
+
         $match = Match::find($id);
+
+        Log::info($request);
 
         if(count($request->allPlayers)>0){
             $pivot = [];
             foreach ($request->allPlayers as $player){
                 $player = (object)$player;
-                if(array_key_exists('is_checked',$player)){
-                    $pivot[$player->id] = [
-                        'match_tournament_id' => $request->tournament_id,
-                        'match_rival_team_id' => $request->rival_team_id,
-                        'good_pass'=>$player->good_pass,
-                        'bad_pass'=>$player->bad_pass,
-                        'short_pass'=>$player->short_pass,
-                        'medium_pass'=>$player->medium_pass,
-                        'long_pass'=>$player->long_pass,
-                        'internal_edge'=>$player->internal_edge,
-                        'external_edge'=>$player->external_edge,
-                        'instep'=>$player->instep,
-                        'taco'=>$player->taco,
-                        'tigh'=>$player->tigh,
-                        'chest'=>$player->chest,
-                        'head'=>$player->head,
 
-                        'd_short_distance'=>$player->d_short_distance,
-                        'd_medium_distance'=>$player->d_medium_distance,
-                        'd_long_distance'=>$player->d_long_distance,
-                        'i_full_speed'=>$player->i_full_speed,
-                        'i_semi_full_speed'=>$player->i_semi_full_speed,
-                        'i_half_speed'=>$player->i_half_speed,
-                        'i_walk'=>$player->i_walk,
-                        'e_run'=>$player->e_run,
-                        'e_jump'=>$player->e_jump,
-                        'e_walk'=>$player->e_walk,
-                        'e_stand'=>$player->e_stand,
-                    ] ;
-                }
+                $pivot[$player->id] = [
+                    'match_tournament_id' => $request->tournament_id,
+                    'match_rival_team_id' => $request->rival_team_id,
+                    'good_pass'=>$player->good_pass,
+                    'bad_pass'=>$player->bad_pass,
+                    'short_pass'=>$player->short_pass,
+                    'medium_pass'=>$player->medium_pass,
+                    'long_pass'=>$player->long_pass,
+                    'internal_edge'=>$player->internal_edge,
+                    'external_edge'=>$player->external_edge,
+                    'instep'=>$player->instep,
+                    'taco'=>$player->taco,
+                    'tigh'=>$player->tigh,
+                    'chest'=>$player->chest,
+                    'head'=>$player->head,
+
+                    'd_short_distance'=>$player->d_short_distance,
+                    'd_medium_distance'=>$player->d_medium_distance,
+                    'd_long_distance'=>$player->d_long_distance,
+                    'i_full_speed'=>$player->i_full_speed,
+                    'i_semi_full_speed'=>$player->i_semi_full_speed,
+                    'i_half_speed'=>$player->i_half_speed,
+                    'i_walk'=>$player->i_walk,
+                    'e_run'=>$player->e_run,
+                    'e_jump'=>$player->e_jump,
+                    'e_walk'=>$player->e_walk,
+                    'e_stand'=>$player->e_stand,
+                ] ;
+
             }
             $match->players()->sync($pivot);
         }

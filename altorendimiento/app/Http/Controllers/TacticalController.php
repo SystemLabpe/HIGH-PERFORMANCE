@@ -16,7 +16,7 @@ use App\Tactical;
 
 use Log;
 
-class TacticalController
+class TacticalController extends Controller
 {
 
     public function index()

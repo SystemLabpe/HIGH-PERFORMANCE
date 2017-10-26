@@ -9,7 +9,9 @@
 namespace App;
 
 
-class Tactical
+use Illuminate\Database\Eloquent\Model;
+
+class Tactical extends Model
 {
     protected $table = "tacticals";
 
