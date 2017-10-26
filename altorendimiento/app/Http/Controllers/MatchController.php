@@ -307,7 +307,8 @@ class MatchController extends Controller
     public function editTechnicalPhysical($id)
     {
         $match = Match::with(['tournament','rival_team','stadium'])->find($id);
-        $allPlayers = $match->players();
+        $allPlayers = $match->players()->get();
+        Log::info($allPlayers);
 //        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
 //
         if(count($allPlayers)>0){
@@ -404,14 +405,26 @@ class MatchController extends Controller
                         'taco'=>$player->taco,
                         'tigh'=>$player->tigh,
                         'chest'=>$player->chest,
-                        'head'=>$player->head
+                        'head'=>$player->head,
+
+                        'd_short_distance'=>$player->d_short_distance,
+                        'd_medium_distance'=>$player->d_medium_distance,
+                        'd_long_distance'=>$player->d_long_distance,
+                        'i_full_speed'=>$player->i_full_speed,
+                        'i_semi_full_speed'=>$player->i_semi_full_speed,
+                        'i_half_speed'=>$player->i_half_speed,
+                        'i_walk'=>$player->i_walk,
+                        'e_run'=>$player->e_run,
+                        'e_jump'=>$player->e_jump,
+                        'e_walk'=>$player->e_walk,
+                        'e_stand'=>$player->e_stand,
                     ] ;
                 }
             }
             $match->players()->sync($pivot);
         }
 
-        return redirect()->route('match.index')->with('info', 'Aspecto Tecnico/fisico editado satisfactoriamente');
+        return redirect()->route('matchs.index')->with('info', 'Aspecto Tecnico/fisico editado satisfactoriamente');
     }
 
     public function editTactical($id)
