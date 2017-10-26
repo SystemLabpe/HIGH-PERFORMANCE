@@ -361,7 +361,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
--- Table `highperformancedb`.`player_match`
+-- Table `highperformancedb`.`tactical_match`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `highperformancedb`.`tactical_match` ;
 

@@ -307,8 +307,9 @@ class MatchController extends Controller
     public function editTechnicalPhysical($id)
     {
         $match = Match::with(['tournament','rival_team','stadium'])->find($id);
-        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
-
+        $allPlayers = $match->players();
+//        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
+//
         if(count($allPlayers)>0){
             foreach ($allPlayers as $allPlayer){
                 $addDefaultValues = true;
@@ -410,7 +411,37 @@ class MatchController extends Controller
             $match->players()->sync($pivot);
         }
 
-        return redirect()->route('match.index')->with('info', 'Aspecto Tactico/fisico editado satisfactoriamente');
+        return redirect()->route('match.index')->with('info', 'Aspecto Tecnico/fisico editado satisfactoriamente');
+    }
+
+    public function editTactical($id)
+    {
+        $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
+
+        return view('match.match_technical_physical_tactic',compact('match'));
+    }
+
+
+
+    public function updateTactical(Request $request, $id)
+    {
+        $match = Match::find($id);
+
+        if(count($request->tacticals)>0){
+            $pivot = [];
+            foreach ($request->tacticals as $tactical){
+                $tactical = (object)$tactical;
+                $pivot[$tactical->id] = [
+                    'match_tournament_id' => $request->tournament_id,
+                    'match_rival_team_id' => $request->rival_team_id,
+                    'is_own'=>$tactical->is_own,
+                    'ended_in_goal'=>$tactical->ended_in_goal
+                ] ;
+            }
+            $match->tacticals()->sync($pivot);
+        }
+
+        return redirect()->route('match.index')->with('info', 'Aspecto Tactico editado satisfactoriamente');
     }
 
 }

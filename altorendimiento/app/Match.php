@@ -44,5 +44,10 @@ class Match extends Model
 
     }
 
+    public function tacticals(){
+        return $this->belongsToMany('App\Tactical','tactical_match','match_id','tactical_id')
+            ->withPivot('is_own','ended_in_goal');
+
+    }
 
 }
