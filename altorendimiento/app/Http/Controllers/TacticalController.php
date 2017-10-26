@@ -35,8 +35,8 @@ class TacticalController extends Controller
     {
         $tactical = new Tactical();
         $tactical->name = $request->name;
-        $tactical->desc = $request->height;
-        $tactical->tactical_type = $request->weight;
+        $tactical->desc = $request->desc;
+        $tactical->tactical_type = $request->tactical_type;
         $tactical->club_id = Auth::user()->club_id;
         $tactical->save();
 
@@ -61,8 +61,8 @@ class TacticalController extends Controller
     {
         $tactical = Tactical::find($id);
         $tactical->name = $request->name;
-        $tactical->desc = $request->height;
-        $tactical->tactical_type = $request->weight;
+        $tactical->desc = $request->desc;
+        $tactical->tactical_type = $request->tactical_type;
         $tactical->club_id = Auth::user()->club_id;
         $tactical->save();
         return redirect()->route('tacticals.index')->with('info', 'Tactica editada satisfactoriamente');

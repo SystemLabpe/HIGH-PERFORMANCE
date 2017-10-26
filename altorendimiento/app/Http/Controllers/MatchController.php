@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tactical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -434,8 +435,9 @@ class MatchController extends Controller
     public function editTactical($id)
     {
         $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
+        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->get();
 
-        return view('match.match_technical_physical_tactic',compact('match'));
+        return view('match.match_tactic',compact('match','tacticals'));
     }
 
 
@@ -458,7 +460,26 @@ class MatchController extends Controller
             $match->tacticals()->sync($pivot);
         }
 
-        return redirect()->route('match.index')->with('info', 'Aspecto Tactico editado satisfactoriamente');
+        return redirect()->route('matchs.index')->with('info', 'Aspecto Tactico editado satisfactoriamente');
     }
+
+    public function createTactical(Request $request, $id)
+    {
+        $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
+
+        $pivot = [];
+        $pivot[$request->tactical_id] = [
+            'match_tournament_id' => $request->tournament_id,
+            'match_rival_team_id' => $request->rival_team_id,
+            'is_own'=>$request->is_own,
+            'ended_in_goal'=>$request->ended_in_goal
+        ] ;
+
+        $match->tacticals()->syncWithoutDetaching($pivot);
+
+        return view('match.match_tactic',compact('match'));
+    }
+
+
 
 }
