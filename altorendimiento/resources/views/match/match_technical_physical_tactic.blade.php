@@ -13,6 +13,11 @@
 
 	{!! Form::model($match, ['route' => ['matchs.updateTechnicalPhysical', $match->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
+	{!! Form::hidden('id', $match->id) !!}
+	{!! Form::hidden('tournament_id', $match->tournament_id) !!}
+	{!! Form::hidden('rival_team_id', $match->rival_team_id) !!}
+	{!! Form::hidden('stadium_id', $match->stadium_id) !!}
+
 	@foreach($allPlayers as $key => $player)
 		<div class="panel panel-info">
 		{!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
