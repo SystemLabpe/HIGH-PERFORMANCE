@@ -15,7 +15,7 @@
         @foreach($tacticals as $key => $value)
             <tr>
                 <td>{{ $value->name }}</td>
-                <td>{{ $value->tactical_type == 1 ? 'De Sistema' : 'De Fija'</td>
+                <td>{{ $value->tactical_type == 1 ? 'De Sistema' : 'De Fija' }}</td>
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>
 
