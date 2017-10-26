@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tactical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -307,8 +308,10 @@ class MatchController extends Controller
     public function editTechnicalPhysical($id)
     {
         $match = Match::with(['tournament','rival_team','stadium'])->find($id);
-        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
-
+        $allPlayers = $match->players()->get();
+        Log::info($allPlayers);
+//        $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
+//
         if(count($allPlayers)>0){
             foreach ($allPlayers as $allPlayer){
                 $addDefaultValues = true;
@@ -382,35 +385,102 @@ class MatchController extends Controller
 
     public function updateTechnicalPhysical(Request $request, $id)
     {
+        Log::info($id);
+
         $match = Match::find($id);
+
+        Log::info($request);
 
         if(count($request->allPlayers)>0){
             $pivot = [];
             foreach ($request->allPlayers as $player){
                 $player = (object)$player;
-                if(array_key_exists('is_checked',$player)){
-                    $pivot[$player->id] = [
-                        'match_tournament_id' => $request->tournament_id,
-                        'match_rival_team_id' => $request->rival_team_id,
-                        'good_pass'=>$player->good_pass,
-                        'bad_pass'=>$player->bad_pass,
-                        'short_pass'=>$player->short_pass,
-                        'medium_pass'=>$player->medium_pass,
-                        'long_pass'=>$player->long_pass,
-                        'internal_edge'=>$player->internal_edge,
-                        'external_edge'=>$player->external_edge,
-                        'instep'=>$player->instep,
-                        'taco'=>$player->taco,
-                        'tigh'=>$player->tigh,
-                        'chest'=>$player->chest,
-                        'head'=>$player->head
-                    ] ;
-                }
+
+                $pivot[$player->id] = [
+                    'match_tournament_id' => $request->tournament_id,
+                    'match_rival_team_id' => $request->rival_team_id,
+                    'good_pass'=>$player->good_pass,
+                    'bad_pass'=>$player->bad_pass,
+                    'short_pass'=>$player->short_pass,
+                    'medium_pass'=>$player->medium_pass,
+                    'long_pass'=>$player->long_pass,
+                    'internal_edge'=>$player->internal_edge,
+                    'external_edge'=>$player->external_edge,
+                    'instep'=>$player->instep,
+                    'taco'=>$player->taco,
+                    'tigh'=>$player->tigh,
+                    'chest'=>$player->chest,
+                    'head'=>$player->head,
+
+                    'd_short_distance'=>$player->d_short_distance,
+                    'd_medium_distance'=>$player->d_medium_distance,
+                    'd_long_distance'=>$player->d_long_distance,
+                    'i_full_speed'=>$player->i_full_speed,
+                    'i_semi_full_speed'=>$player->i_semi_full_speed,
+                    'i_half_speed'=>$player->i_half_speed,
+                    'i_walk'=>$player->i_walk,
+                    'e_run'=>$player->e_run,
+                    'e_jump'=>$player->e_jump,
+                    'e_walk'=>$player->e_walk,
+                    'e_stand'=>$player->e_stand,
+                ] ;
+
             }
             $match->players()->sync($pivot);
         }
 
-        return redirect()->route('match.index')->with('info', 'Aspecto Tactico/fisico editado satisfactoriamente');
+        return redirect()->route('matchs.index')->with('info', 'Aspecto Tecnico/fisico editado satisfactoriamente');
     }
+
+    public function editTactical($id)
+    {
+        $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
+        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->get();
+
+        return view('match.match_tactic',compact('match','tacticals'));
+    }
+
+
+
+    public function updateTactical(Request $request, $id)
+    {
+        $match = Match::find($id);
+
+        if(count($request->tacticals)>0){
+            $pivot = [];
+            foreach ($request->tacticals as $tactical){
+                $tactical = (object)$tactical;
+                $pivot[$tactical->id] = [
+                    'match_tournament_id' => $request->tournament_id,
+                    'match_rival_team_id' => $request->rival_team_id,
+                    'is_own'=>$tactical->is_own,
+                    'ended_in_goal'=>$tactical->ended_in_goal
+                ] ;
+            }
+            $match->tacticals()->sync($pivot);
+        }
+
+        return redirect()->route('matchs.index')->with('info', 'Aspecto Tactico editado satisfactoriamente');
+    }
+
+    public function createTactical(Request $request, $id)
+    {
+        $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
+        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->get();
+
+        $pivot = [];
+        $pivot[$request->tactical_id] = [
+            'match_tournament_id' => $request->tournament_id,
+            'match_rival_team_id' => $request->rival_team_id,
+            'is_own'=>$request->is_own,
+            'ended_in_goal'=>$request->ended_in_goal
+        ] ;
+
+        $match->tacticals()->syncWithoutDetaching($pivot);
+
+        return view('match.match_tactic',compact('match','tacticals'));
+    }
+
+
 
 }

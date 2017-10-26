@@ -22,8 +22,20 @@
 		    	{!! Form::select('tactical_id', $tacticals->pluck('name','id'), null , array('class' => 'form-control', 'placeholder' => 'Agregar Táctica', 'required' => '')) !!}
 		    </div>
 		    <div class="col-md-2">
-		    	{!! Form::submit('Editar', array('class' => 'btn btn-primary')) !!}
+		    	{!! Form::submit('Agregar', array('class' => 'btn btn-primary')) !!}
 		    </div>
+		</div>
+		<div class="form-group">
+			{!!  Form::label('is_own', 'Es propia', ['class' => 'control-label col-md-4']) !!}
+			<div class="col-md-1">
+				{!! Form::checkbox('is_own', 1) !!}
+			</div>
+		</div>
+		<div class="form-group">
+			{!!  Form::label('is_own', 'Culminó en gol', ['class' => 'control-label col-md-4']) !!}
+			<div class="col-md-1">
+				{!! Form::checkbox('ended_in_goal', 1) !!}
+			</div>
 		</div>
 	{!! Form::close() !!}
 

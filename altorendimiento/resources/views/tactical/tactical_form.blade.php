@@ -13,6 +13,6 @@
 <div class="form-group">
 	{!!  Form::label('desc', 'Descripción', ['class' => 'control-label col-md-4']) !!}
     <div class="col-md-4">
-    	{{ Form::textarea('desc', null, ['size' => '4x3']) }}
+    	{{ Form::textarea('desc', null, ['size' => '35x3']) }}
     </div>
 </div>

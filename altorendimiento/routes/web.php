@@ -33,3 +33,9 @@ Route::resource('matchs','MatchController');
 Route::get('/matchs/{id}/editTechnicalPhysical', 'MatchController@editTechnicalPhysical')->name('matchs.editTechnicalPhysical');
 Route::put('/matchs/{id}/updateTechnicalPhysical', 'MatchController@updateTechnicalPhysical')->name('matchs.updateTechnicalPhysical');
 
+Route::get('/matchs/{id}/editTactical', 'MatchController@editTactical')->name('matchs.editTactical');
+Route::put('/matchs/{id}/updateTactical', 'MatchController@updateTactical')->name('matchs.updateTactical');
+Route::put('/matchs/{id}/createTactical', 'MatchController@createTactical')->name('matchs.createTactical');
+
+Route::resource('tacticals','TacticalController');
+

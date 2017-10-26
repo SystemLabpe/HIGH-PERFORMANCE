@@ -361,7 +361,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
--- Table `highperformancedb`.`player_match`
+-- Table `highperformancedb`.`tactical_match`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `highperformancedb`.`tactical_match` ;
 
@@ -371,8 +371,8 @@ CREATE TABLE IF NOT EXISTS `highperformancedb`.`tactical_match` (
   `match_id` INT(11) NOT NULL,
   `match_tournament_id` INT(11) NOT NULL,
   `match_rival_team_id` INT(11) NOT NULL,
-  `is_own` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0:NO 1:YES',
-  `ended_in_goal` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '0:NO 2:YES',
+  `is_own` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '1:NO 2:YES',
+  `ended_in_goal` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '1:NO 2:YES',
 
   PRIMARY KEY (`id`,`tactical_id`,`match_id`,`match_tournament_id`, `match_rival_team_id`),
   INDEX `tactical_tactmatc_idx` (`tactical_id` ASC),
