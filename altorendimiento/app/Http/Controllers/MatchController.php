@@ -375,7 +375,7 @@ class MatchController extends Controller
             }
             unset( $match->players);
         }
-        return view('match_technical_physical_tactic.blade.php',compact('match','allPlayers'));
+        return view('match.match_technical_physical_tactic',compact('match','allPlayers'));
     }
 
 
@@ -410,7 +410,7 @@ class MatchController extends Controller
             $match->players()->sync($pivot);
         }
 
-        return redirect()->route('matchs.index')->with('info', 'Aspecto Tactico/fisico editado satisfactoriamente');
+        return redirect()->route('match.index')->with('info', 'Aspecto Tactico/fisico editado satisfactoriamente');
     }
 
 }
