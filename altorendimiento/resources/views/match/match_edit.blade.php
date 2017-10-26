@@ -78,95 +78,33 @@
 		 	</div>
 		 </div>
 
-		<h3>Jugadores</h3>
+		<div class="row">
+    		<div class="col-md-6 col-md-offset-3">
+				<h3>Jugadores</h3>
 
-		<table class="table table-striped table-bordered">
-		    <thead>
-		        <tr>
-		            <td>Jugador</td>
-		            <td></td>
-		            <td></td>
-		            <td></td>
-		            <td></td>
-		            <td></td>
-		            <td></td>
-		            <td></td>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    @foreach($allPlayers as $key => $player)
-		        <tr>
-		            {!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
-		            <td rowspan="2">{{ $player->name }}</td>
+				<table class="table table-striped table-bordered">
+				    <thead>
+				        <tr>
+				            <td>Jugador</td>
+				            <td></td>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    @foreach($allPlayers as $key => $player)
+				        <tr>
+				            {!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
+				            <td>{{ $player->name }}</td>
 
-		            <td>
-		                Pases buenos
-		                {!! Form::number('allPlayers['.$key.'][good_pass]', $player->good_pass, array('class' => 'form-control')) !!}
-		            </td>
+				            <td> 
+				                {!! Form::checkbox('allPlayers['.$key.'][is_checked]', true, $player->is_checked ? 1 : 0) !!}
+				            </td>
+				        </tr>
+				    @endforeach
+				    </tbody>
+				</table>
 
-		            <td>
-		                Pases malos
-		                {!! Form::number('allPlayers['.$key.'][bad_pass]', $player->bad_pass, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Pases cortos
-		                {!! Form::number('allPlayers['.$key.'][short_pass]', $player->short_pass, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Pases medios
-		                {!! Form::number('allPlayers['.$key.'][medium_pass]', $player->medium_pass, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Pases largos
-		                {!! Form::number('allPlayers['.$key.'][long_pass]', $player->long_pass, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Borde interno
-		                {!! Form::number('allPlayers['.$key.'][internal_edge]', $player->internal_edge, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td rowspan="2"> 
-		                {!! Form::checkbox('allPlayers['.$key.'][is_checked]', true, $player->is_checked ? 1 : 0) !!}
-		            </td>
-		        </tr>
-		        <tr>
-		            <td>
-		                Borde externo
-		                {!! Form::number('allPlayers['.$key.'][external_edge]', $player->external_edge, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Empeine
-		                {!! Form::number('allPlayers['.$key.'][instep]', $player->instep, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Taco
-		                {!! Form::number('allPlayers['.$key.'][taco]', $player->taco, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Muslo
-		                {!! Form::number('allPlayers['.$key.'][tigh]', $player->tigh, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Pecho
-		                {!! Form::number('allPlayers['.$key.'][chest]', $player->chest, array('class' => 'form-control')) !!}
-		            </td>
-
-		            <td>
-		                Cabeza
-		                {!! Form::number('allPlayers['.$key.'][head]', $player->head, array('class' => 'form-control')) !!}
-		            </td>
-		        </tr>
-		    @endforeach
-		    </tbody>
-		</table>
+			</div>
+		</div>
 
 		<!-- @foreach($allPlayers as $key => $player)
 		<div class="panel panel-default">
