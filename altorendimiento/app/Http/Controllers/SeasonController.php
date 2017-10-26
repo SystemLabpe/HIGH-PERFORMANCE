@@ -14,7 +14,7 @@ class SeasonController extends Controller
 
     public function index()
     {
-        $seasons = Season::get();
+        $seasons = Season::paginate(5);
         return view('season.season_list', compact('seasons'));
     }
 
@@ -32,7 +32,7 @@ class SeasonController extends Controller
         $season->club_id = Auth::user()->club_id;
         $season->save();
 
-        return redirect()->route('seasons.index');
+        return redirect()->route('seasons.index')->with('info', 'Temporada creada satisfactoriamente');
     }
 
     public function show($id)
@@ -55,7 +55,7 @@ class SeasonController extends Controller
         $season->date_end = $request->date_end;
         $season->club_id = Auth::user()->club_id;
         $season->save();
-        return redirect()->route('seasons.index');
+        return redirect()->route('seasons.index')->with('info', 'Temporada editado satisfactoriamente');;
     }
 
     public function destroy($id)
