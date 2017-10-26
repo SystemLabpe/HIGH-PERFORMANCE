@@ -3,14 +3,18 @@
 @section('section')
 <div class="col-md-12">
 	<h2>Módulo Físico Técnico</h2>
-	<div class="col-md-6 col-md-offset-3">
-		<h3>Equipo Rival: {{ $match->rival_team->name }} </h3>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h3>Equipo Rival: {{ $match->rival_team->name }} </h3>
+		</div>
 	</div>
+	<br>
 	@include('layouts.errors')
+
 	{!! Form::model($match, ['route' => ['matchs.updateTechnicalPhysical', $match->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
 	@foreach($allPlayers as $key => $player)
-		<div class="panel panel-default">
+		<div class="panel panel-info">
 		{!! Form::hidden('allPlayers['.$key.'][id]', $player->id) !!}
 		  <div class="panel-heading">
 		    <h3 class="panel-title">{{ $player->name }}</h3>
@@ -19,33 +23,40 @@
 		    <h4><strong>Físico</strong></h4>
 		    <table class="table">
 		    	<tr>
+		    		<td colspan="6" class="text-center"><strong>Pases</strong></td>
+		    	</tr>
+		    	<tr>
 		    		<td>
-		                Pases buenos
+		                Porcentaje buenos
 		                {!! Form::number('allPlayers['.$key.'][good_pass]', $player->good_pass, array('class' => 'form-control')) !!}
 		            </td>
 		            <td>
-		                Pases malos
+		                Porcentaje malos
 		                {!! Form::number('allPlayers['.$key.'][bad_pass]', $player->bad_pass, array('class' => 'form-control')) !!}
 		            </td>
 		            <td>
-		                Pases cortos
+		                Cantidad cortos
 		                {!! Form::number('allPlayers['.$key.'][short_pass]', $player->short_pass, array('class' => 'form-control')) !!}
 		            </td>
 		            <td>
-		                Pases medios
+		                Cantidad medios
 		                {!! Form::number('allPlayers['.$key.'][medium_pass]', $player->medium_pass, array('class' => 'form-control')) !!}
 		            </td>
 		            <td>
-		                Pases largos
+		                Cantidad largos
 		                {!! Form::number('allPlayers['.$key.'][long_pass]', $player->long_pass, array('class' => 'form-control')) !!}
 		            </td>
+		        </tr>
+		        <tr></tr>
+		        <tr>
+		    		<td colspan="6" class="text-center"><strong>Posición del Pie</strong></td>
+		    	</tr>
+		        <tr>
 		            <td>
 		                Borde interno
 		                {!! Form::number('allPlayers['.$key.'][internal_edge]', $player->internal_edge, array('class' => 'form-control')) !!}
 		            </td>
-		    	</tr>
-		    	<tr>
-		    		<td>
+		            <td>
 		                Borde externo
 		                {!! Form::number('allPlayers['.$key.'][external_edge]', $player->external_edge, array('class' => 'form-control')) !!}
 		            </td>
@@ -57,6 +68,12 @@
 		                Taco
 		                {!! Form::number('allPlayers['.$key.'][taco]', $player->taco, array('class' => 'form-control')) !!}
 		            </td>
+		    	</tr>
+		    	<tr></tr>
+		    	<tr>
+		    		<td colspan="6" class="text-center"><strong>Posición del Cuerpo</strong></td>
+		    	</tr>
+		    	<tr>		    		
 		            <td>
 		                Muslo
 		                {!! Form::number('allPlayers['.$key.'][tigh]', $player->tigh, array('class' => 'form-control')) !!}
