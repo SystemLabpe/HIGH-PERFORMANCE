@@ -13,7 +13,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url ('/') }}">
-                    <img src="assets/img/logo.png" class="logo">
+                    <img src="http://localhost/HIGH-PERFORMANCE/altorendimiento/public/assets/img/logo.png" class="logo">
                 </a>
             </div>
             <!-- /.navbar-header -->
