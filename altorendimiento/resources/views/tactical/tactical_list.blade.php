@@ -6,9 +6,9 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td class="col-md-6">Táctica</td>
-                <td class="col-md-3">Tipo</td>
-                <td class="col-md-3"><a class="btn btn-small btn-warning" href="{{ URL::to('tacticals/create') }}">Crear</a></td>
+                <td class="col-md-4">Táctica</td>
+                <td class="col-md-4">Tipo</td>
+                <td class="col-md-4"><a class="btn btn-small btn-warning" href="{{ URL::to('tacticals/create') }}">Crear</a></td>
             </tr>
         </thead>
         <tbody>
