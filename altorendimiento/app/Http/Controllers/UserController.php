@@ -9,9 +9,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use App\User;
+use App\Club;
 
 
 use Log;
@@ -21,53 +22,58 @@ class UserController extends Controller
 
     public function index()
     {
-        $administrators = User::paginate(5);
-        return view('player.player_list', compact('administrators'));
+        $administrators = User::with('club')->paginate(5);
+        return view('admin.admin_list', compact('administrators'));
     }
 
 
     public function create()
     {
-        return view('player.player_add');
+        $clubs = Club::get();
+
+        return view('admin.admin_add',compact('clubs'));
     }
 
     public function store(Request $request)
     {
-        $player = new Player();
-        $player->name = $request->name;
-        $player->height = $request->height;
-        $player->weight = $request->weight;
-        $player->birth_date = $request->birth_date;
-        $player->club_id = Auth::user()->club_id;
-        $player->save();
+        $administrator = new User();
+        $administrator->first_name = $request->first_name;
+        $administrator->last_name = $request->last_name;
+        $administrator->email = $request->email;
+        $administrator->password = Hash::make($request->password);
+        $administrator->role_id = 2;
+        $administrator->club_id = $request->club_id;
+        $administrator->save();
 
-        return redirect()->route('players.index')->with('info', 'Jugador creado satisfactoriamente');
+        return redirect()->route('administrators.index')->with('info', 'Entrenador creado satisfactoriamente');
     }
 
     public function show($id)
     {
-        $player = Player::find($id);
-        return view('player.player_detail',compact('player'));
+        $administrator = User::find($id);
+        return view('admin.admin_detail',compact('administrator'));
     }
 
 
     public function edit($id)
     {
-        $player = Player::find($id);
-        return view('player.player_edit',compact('player'));
+        $administrator = User::find($id);
+        $clubs = Club::get();
+        return view('admin.admin_edit',compact('administrator','clubs'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $player = Player::find($id);
-        $player->name = $request->name;
-        $player->height = $request->height;
-        $player->weight = $request->weight;
-        $player->birth_date = $request->birth_date;
-        $player->club_id = Auth::user()->club_id;
-        $player->save();
-        return redirect()->route('players.index')->with('info', 'Jugador editado satisfactoriamente');;;
+        $administrator = User::find($id);
+        $administrator->first_name = $request->first_name;
+        $administrator->last_name = $request->last_name;
+        $administrator->email = $request->email;
+        $administrator->password = Hash::make($request->password);
+        $administrator->role_id = 2;
+        $administrator->club_id = $request->club_id;
+        $administrator->save();
+        return redirect()->route('administrators.index')->with('info', 'Entrenador editado satisfactoriamente');;;
     }
 
 

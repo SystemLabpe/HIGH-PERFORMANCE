@@ -6,7 +6,7 @@
     @include('layouts.errors')
     {!! Form::model($administrator, ['route' => ['administrators.update', $administrator->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
 
-        @include('administrator.administrator_form')
+    @include('admin.admin_form')
 
         <div class="col-md-12 text-center">
     		{!! Form::submit('Editar', array('class' => 'btn btn-primary')) !!}

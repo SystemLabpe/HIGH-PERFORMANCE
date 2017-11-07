@@ -6,7 +6,7 @@
 	@include('layouts.errors')
 	{!! Form::open(['route' => 'administrators.store', 'class' => 'form-horizontal']) !!}
 
-      @include('administrator.administrator_form')
+      @include('admin.admin_form')
 
 		<div class="col-md-12 text-center">
 			{!! Form::submit('Crear', array('class' => 'btn btn-primary')) !!}

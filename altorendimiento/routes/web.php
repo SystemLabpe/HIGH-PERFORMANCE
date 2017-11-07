@@ -48,3 +48,5 @@ Route::resource('tacticals','TacticalController');
 
 Route::resource('clubs','ClubController');
 
+Route::resource('administrators','UserController');
+
