@@ -465,8 +465,7 @@ class MatchController extends Controller
 
     public function createTactical(Request $request, $id)
     {
-        $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
-        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->get();
+        $match = Match::find($id);
 
         $pivot = [];
         $pivot[$request->tactical_id] = [
@@ -476,7 +475,10 @@ class MatchController extends Controller
             'ended_in_goal'=>$request->ended_in_goal
         ] ;
 
-        $match->tacticals()->syncWithoutDetaching($pivot);
+        $match->tacticals()->attach($pivot);
+
+        $match = Match::with(['tournament','rival_team','stadium','tacticals'])->find($id);
+        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->get();
 
         return view('match.match_tactic',compact('match','tacticals'));
     }

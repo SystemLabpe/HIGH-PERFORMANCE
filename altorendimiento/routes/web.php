@@ -39,3 +39,5 @@ Route::put('/matchs/{id}/createTactical', 'MatchController@createTactical')->nam
 
 Route::resource('tacticals','TacticalController');
 
+Route::resource('clubs','ClubController');
+
