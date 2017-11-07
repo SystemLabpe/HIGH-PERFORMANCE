@@ -51,11 +51,11 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('clubs') }}"><i class="fa fa-dashboard fa-fw"></i> Clubes</a>
+                            <a href="{{ url ('clubs') }}"><i class="fa fa-dashboard fa-fw"></i> Equipos</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('administrators') }}"><i class="fa fa-database fa-fw"></i> Administradores</a>
+                            <a href="{{ url ('administrators') }}"><i class="fa fa-database fa-fw"></i> Entrenadores</a>
                         </li>
 
                     </ul>

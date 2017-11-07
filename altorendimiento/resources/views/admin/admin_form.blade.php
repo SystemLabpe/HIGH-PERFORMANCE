@@ -22,7 +22,7 @@
 <div class="form-group">
     {!! Form::label('password', 'Contraseña', ['class' => 'control-label col-md-4']) !!}
     <div class="col-md-6">
-    	{!! Form::password('password', null, array('class' => 'form-control', 'required' => '')) !!}
+    	{!! Form::password('password', array('class' => 'form-control', 'required' => '')) !!}
     </div>
 </div>
 
