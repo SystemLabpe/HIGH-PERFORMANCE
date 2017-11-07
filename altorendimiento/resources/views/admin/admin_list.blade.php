@@ -1,12 +1,12 @@
 @extends('layouts.dashboard-admin')
-@section('page_heading','Aministradores')
+@section('page_heading','Entrenadores')
 @section('section')
 <div class="col-md-6 col-md-offset-3">
     @include('layouts.info')
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td class="col-md-7">Administrador</td>
+                <td class="col-md-7">Entrenador</td>
                 <td class="col-md-5"><a class="btn btn-small btn-warning" href="{{ URL::to('administrators/create') }}">Crear</a></td>
             </tr>
         </thead>
