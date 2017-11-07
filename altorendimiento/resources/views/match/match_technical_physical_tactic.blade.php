@@ -28,6 +28,12 @@
 		    <h4><strong>Físico</strong></h4>
 		    <table class="table">
 		    	<tr>
+		    		<td>
+		    			Peso
+						{!! Form::number('allPlayers['.$key.'][weight]', $player->weight, array('class' => 'form-control', 'step'=>'any')) !!}
+		    		</td>
+		    	</tr>
+		    	<tr>
 		    		<td colspan="6" class="text-center"><strong>Pases</strong></td>
 		    	</tr>
 		    	<tr>
