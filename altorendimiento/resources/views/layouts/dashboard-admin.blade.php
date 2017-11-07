@@ -55,7 +55,7 @@
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('administrators') }}"><i class="fa fa-database fa-fw"></i> Administradores</a>
+                            <a href="{{ url ('administrators') }}"><i class="fa fa-database fa-fw"></i> Entrenadores</a>
                         </li>
 
                     </ul>
