@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Club;
+use Log;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function admin()
+    {
+        $clubs = Club::paginate(5);
+        return view('club.club_list', compact('clubs'));
     }
 }

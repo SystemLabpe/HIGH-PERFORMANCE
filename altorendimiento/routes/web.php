@@ -17,7 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/admin', 'Auth\AdminLoginController@showLoginForm');
+Route::post('/adminlogin', 'Auth\AdminLoginController@authenticated')->name('adminlogin');
+Route::post('/adminlogout', 'Auth\AdminLoginController@logout');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/adminhome', 'HomeController@admin')->name('home');
+
 
 Route::resource('seasons','SeasonController');
 
