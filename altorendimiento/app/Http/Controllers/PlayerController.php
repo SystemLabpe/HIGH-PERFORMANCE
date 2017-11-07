@@ -21,7 +21,7 @@ class PlayerController extends Controller
 
     public function index()
     {
-        $players = Player::paginate(5);
+        $players = Player::where('club_id','=',Auth::user()->club_id)->paginate(5);
         return view('player.player_list', compact('players'));
     }
 

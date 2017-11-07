@@ -23,14 +23,15 @@ class TournamentController extends Controller
 {
     public function index()
     {
-        $tournaments = Tournament::with('season')->paginate(5);
+        $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
+        $tournaments = Tournament::whereIn('season_id', $seasons)->with('season')->paginate(5);
         return view('tournament.tournament_list', compact('tournaments'));
     }
 
 
     public function create()
     {
-        $seasons = Season::orderBy('updated_at')->get();
+        $seasons = Season::where('club_id','=',Auth::user()->club_id)->orderBy('updated_at')->get();
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
         return view('tournament.tournament_add',compact('seasons','allPlayers'));
     }
@@ -90,9 +91,11 @@ class TournamentController extends Controller
 
     public function edit($id)
     {
+        $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
+
         $tournament = Tournament::with(['players','season'])->find($id);
 
-        $seasons = Season::orderBy('updated_at')->get();
+
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
 
         if(count($allPlayers)>0){

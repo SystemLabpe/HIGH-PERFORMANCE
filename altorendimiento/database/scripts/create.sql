@@ -277,6 +277,9 @@ DROP TABLE IF EXISTS `highperformancedb`.`player_match` ;
 
 CREATE TABLE IF NOT EXISTS `highperformancedb`.`player_match` (
   `player_id` INT(11) NOT NULL,
+  
+  `weight` DOUBLE NOT NULL,
+  
   `match_id` INT(11) NOT NULL,
   `match_tournament_id` INT(11) NOT NULL,
   `match_rival_team_id` INT(11) NOT NULL,

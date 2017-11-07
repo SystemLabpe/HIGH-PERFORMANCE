@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Season;
 use App\Tactical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,14 +26,20 @@ class MatchController extends Controller
 {
     public function index()
     {
-        $matchs = Match::with(['tournament','rival_team','stadium'])->paginate(5);
+        $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
+
+        $tournaments = Tournament::select('id')->whereIn('season_id', $seasons);
+
+        $matchs = Match::with(['tournament','rival_team','stadium'])->whereIn('tournament_id',$tournaments)->paginate(5);
         return view('match.match_list', compact('matchs'));
     }
 
 
     public function create()
     {
-        $tournaments = Tournament::with('season')->orderBy('updated_at')->get();
+        $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
+        $tournaments = Tournament::with('season')->whereIn('season_id', $seasons)
+            ->orderBy('updated_at')->get();
         $rival_teams = Rival_Team::where('club_id','=',Auth::user()->club_id)->get();
         $stadiums = Stadium::where('club_id','=',Auth::user()->club_id)->get();
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
@@ -147,7 +154,10 @@ class MatchController extends Controller
     {
         $match = Match::with(['tournament','rival_team','stadium'])->find($id);
 
-        $tournaments = Tournament::with('season')->orderBy('updated_at')->get();
+        $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
+        $tournaments = Tournament::with('season')->whereIn('season_id', $seasons)
+            ->orderBy('updated_at')->get();
+
         $rival_teams = Rival_Team::where('club_id','=',Auth::user()->club_id)->get();
         $stadiums = Stadium::where('club_id','=',Auth::user()->club_id)->get();
         $allPlayers = Player::where('club_id','=',Auth::user()->club_id)->get();
@@ -225,7 +235,6 @@ class MatchController extends Controller
 
     public function update(Request $request, $id)
     {
-        Log::info($request);
         $match = Match::find($id);
         $match->match_date = $request->match_date;
         $match->is_local = $request->is_local;
@@ -318,6 +327,7 @@ class MatchController extends Controller
                 foreach ($match->players as $player){
                     if($allPlayer->id == $player->id){
                         $allPlayer->is_checked = 1;
+                        $allPlayer->weight = $player->pivot->weight;
                         $allPlayer->good_pass = $player->pivot->good_pass;
                         $allPlayer->bad_pass = $player->pivot->bad_pass;
                         $allPlayer->short_pass = $player->pivot->short_pass;
@@ -350,6 +360,7 @@ class MatchController extends Controller
                 if($addDefaultValues){
                     $allPlayer->is_checked = 0;
                     $allPlayer->player_number = null;
+                    $allPlayer->weight = null;
                     $allPlayer->good_pass = null;
                     $allPlayer->bad_pass = null;
                     $allPlayer->short_pass = null;
@@ -399,6 +410,7 @@ class MatchController extends Controller
                 $pivot[$player->id] = [
                     'match_tournament_id' => $request->tournament_id,
                     'match_rival_team_id' => $request->rival_team_id,
+                    'weight'=>$player->weight,
                     'good_pass'=>$player->good_pass,
                     'bad_pass'=>$player->bad_pass,
                     'short_pass'=>$player->short_pass,
