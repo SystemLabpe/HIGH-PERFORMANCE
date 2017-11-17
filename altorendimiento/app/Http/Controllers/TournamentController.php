@@ -91,7 +91,7 @@ class TournamentController extends Controller
 
     public function edit($id)
     {
-        $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
+        $seasons = Season::select('id','name')->where('club_id','=',Auth::user()->club_id);
 
         $tournament = Tournament::with(['players','season'])->find($id);
 

@@ -11,8 +11,8 @@
                 <h4><strong>Torneo:</strong> {{ $match->tournament->name }} </h4>
                 <h4><strong>Fecha de Partido:</strong> {{ $match->match_date }} </h4>
                 <h4><strong>Local:</strong>  {{ $match->is_local == 1 ? 'Local' : 'Visitante' }} </h4>
-                <h4><strong>Goles Local:</strong> {{ $match->is_local }} </h4>
-                <h4><strong>Goles Visitante:</strong> {{ $match->is_local }} </h4>
+                <h4><strong>Goles Local:</strong> {{ $match->local_score }} </h4>
+                <h4><strong>Goles Visitante:</strong> {{ $match->visitor_score }} </h4>
                 
             </p>
             <table class="table table-striped table-bordered">
