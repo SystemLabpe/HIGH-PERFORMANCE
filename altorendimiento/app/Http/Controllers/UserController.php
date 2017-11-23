@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $administrators = User::with('club')->paginate(5);
+        $administrators = User::with('club')->paginate(10);
         return view('admin.admin_list', compact('administrators'));
     }
 

@@ -38,11 +38,11 @@
 		    	</tr>
 		    	<tr>
 		    		<td>
-		                Porcentaje buenos
+		                Buenos
 		                {!! Form::number('allPlayers['.$key.'][good_pass]', $player->good_pass, array('class' => 'form-control')) !!}
 		            </td>
 		            <td>
-		                Porcentaje malos
+		                Malos
 		                {!! Form::number('allPlayers['.$key.'][bad_pass]', $player->bad_pass, array('class' => 'form-control')) !!}
 		            </td>
 		            <td>

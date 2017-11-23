@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Player;
+use App\Club;
 
 
 use Log;
@@ -21,8 +22,9 @@ class PlayerController extends Controller
 
     public function index()
     {
-        $players = Player::where('club_id','=',Auth::user()->club_id)->paginate(5);
-        return view('player.player_list', compact('players'));
+        $players = Player::where('club_id','=',Auth::user()->club_id)->paginate(10);
+        $club = Club::find(Auth::user()->club_id);
+        return view('player.player_list', compact('players','club'));
     }
 
 

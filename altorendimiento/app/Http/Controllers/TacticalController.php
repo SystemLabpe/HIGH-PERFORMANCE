@@ -21,7 +21,7 @@ class TacticalController extends Controller
 
     public function index()
     {
-        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->paginate(5);
+        $tacticals = Tactical::where('club_id','=',Auth::user()->club_id)->paginate(10);
         return view('tactical.tactical_list', compact('tacticals'));
     }
 

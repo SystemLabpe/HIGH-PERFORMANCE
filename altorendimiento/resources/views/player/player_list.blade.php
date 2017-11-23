@@ -1,7 +1,8 @@
 @extends('layouts.dashboard')
-@section('page_heading','Jugadores')
+@section('page_heading', 'Jugadores')
 @section('section')
 <div class="col-md-6 col-md-offset-3">
+    <h2> {{ $club->name }}</h2>
     @include('layouts.info')
     <table class="table table-striped table-bordered">
         <thead>

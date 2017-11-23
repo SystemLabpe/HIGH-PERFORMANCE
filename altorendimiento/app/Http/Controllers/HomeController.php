@@ -25,12 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return redirect()->route('matchs.index');
+    }
+
+    public function dashboard()
+    {
         return view('home');
     }
 
     public function admin()
     {
-        $clubs = Club::paginate(5);
+        $clubs = Club::paginate(10);
         return view('club.club_list', compact('clubs'));
     }
 }

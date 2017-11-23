@@ -24,7 +24,7 @@ class TournamentController extends Controller
     public function index()
     {
         $seasons = Season::select('id')->where('club_id','=',Auth::user()->club_id);
-        $tournaments = Tournament::whereIn('season_id', $seasons)->with('season')->paginate(5);
+        $tournaments = Tournament::whereIn('season_id', $seasons)->with('season')->paginate(10);
         return view('tournament.tournament_list', compact('tournaments'));
     }
 

@@ -254,20 +254,8 @@
                             </span>
                             </div>
                         </li> -->
-                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('home') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-
-                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('seasons') }}"><i class="fa fa-database fa-fw"></i> Temporadas</a>
-                        </li>
-
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
                             <a href="{{ url ('players') }}"><i class="fa fa-bar-chart-o fa-group"></i> Jugadores</a>
-                        </li>
-
-                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('tournaments') }}"><i class="fa fa-database fa-fw"></i> Torneos</a>
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
@@ -283,9 +271,20 @@
                         </li>
 
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('seasons') }}"><i class="fa fa-database fa-fw"></i> Temporadas</a>
+                        </li>
+
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('tournaments') }}"><i class="fa fa-database fa-fw"></i> Torneos</a>
+                        </li>
+
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
                             <a href="{{ url ('matchs') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Partidos</a>
                         </li>
 
+                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

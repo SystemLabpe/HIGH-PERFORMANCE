@@ -30,7 +30,7 @@ class MatchController extends Controller
 
         $tournaments = Tournament::select('id')->whereIn('season_id', $seasons);
 
-        $matchs = Match::with(['tournament','rival_team','stadium'])->whereIn('tournament_id',$tournaments)->paginate(5);
+        $matchs = Match::with(['tournament','rival_team','stadium'])->whereIn('tournament_id',$tournaments)->paginate(10);
         return view('match.match_list', compact('matchs'));
     }
 

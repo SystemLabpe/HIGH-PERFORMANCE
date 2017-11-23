@@ -14,7 +14,7 @@ class SeasonController extends Controller
 
     public function index()
     {
-        $seasons = Season::where('club_id','=',Auth::user()->club_id)->paginate(5);
+        $seasons = Season::where('club_id','=',Auth::user()->club_id)->paginate(10);
         return view('season.season_list', compact('seasons'));
     }
 

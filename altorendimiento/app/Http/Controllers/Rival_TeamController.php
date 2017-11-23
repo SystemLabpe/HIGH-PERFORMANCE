@@ -21,7 +21,7 @@ class Rival_TeamController extends Controller
 
     public function index()
     {
-        $rival_teams = Rival_Team::where('club_id','=',Auth::user()->club_id)->paginate(5);
+        $rival_teams = Rival_Team::where('club_id','=',Auth::user()->club_id)->paginate(10);
         return view('rival_team.rival_team_list', compact('rival_teams'));
     }
 

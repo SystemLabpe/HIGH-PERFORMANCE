@@ -20,7 +20,7 @@ class StadiumController extends Controller
 {
     public function index()
     {
-        $stadiums = Stadium::where('club_id','=',Auth::user()->club_id)->paginate(5);
+        $stadiums = Stadium::where('club_id','=',Auth::user()->club_id)->paginate(10);
         return view('stadium.stadium_list', compact('stadiums'));
     }
 
